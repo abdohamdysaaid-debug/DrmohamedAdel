@@ -45,9 +45,8 @@ position:relative;
 /* soft light */
 
 .light{
-
 position:absolute;
-top: 60px;
+top:60px;
 left:50%;
 transform:translateX(-50%);
 width:420px;
@@ -63,6 +62,9 @@ transparent 80%
 
 filter:blur(35px);
 pointer-events:none;
+
+opacity:0;
+transition:0.6s;
 }
 
 /* rope */
