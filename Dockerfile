@@ -1,14 +1,14 @@
-FROM php:8.3-cli
+FROM php:8.3-apache
 
-WORKDIR /app
+WORKDIR /var/www/html
 
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
     libzip-dev \
-    zip
+    && docker-php-ext-install zip
 
-RUN docker-php-ext-install zip
+RUN a2enmod rewrite
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
@@ -16,6 +16,10 @@ COPY . .
 
 RUN composer install --no-dev --optimize-autoloader
 
-EXPOSE 8080
+RUN chown -R www-data:www-data /var/www/html
 
-CMD ["sh", "-c", "php -S 0.0.0.0:$PORT -t public"]
+RUN sed -i 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/000-default.conf
+
+EXPOSE 80
+
+CMD ["apache2-foreground"]
