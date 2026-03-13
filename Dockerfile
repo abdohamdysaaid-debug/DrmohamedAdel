@@ -3,10 +3,10 @@ FROM php:8.3-cli
 WORKDIR /var/www
 
 RUN apt-get update && apt-get install -y \
-    git \
-    unzip \
-    libzip-dev \
-    zip
+git \
+unzip \
+libzip-dev \
+zip
 
 RUN docker-php-ext-install zip
 
@@ -16,6 +16,8 @@ COPY . .
 
 RUN composer install --no-dev --optimize-autoloader
 
-EXPOSE 8000
+RUN php artisan config:cache
+RUN php artisan route:cache
+RUN php artisan view:cache
 
-CMD php -S 0.0.0.0:$PORT -t public
+CMD php -S 0.0.0.0:${PORT:-8000} -t public
