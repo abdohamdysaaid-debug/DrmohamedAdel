@@ -1,18 +1,30 @@
+# استخدم PHP 8.3
 FROM php:8.3-cli
 
+# تثبيت الأدوات المطلوبة
+RUN apt-get update && apt-get install -y \
+    git \
+    unzip \
+    libzip-dev \
+    zip
+
+# تثبيت امتداد zip
+RUN docker-php-ext-install zip
+
+# تثبيت Composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+# تحديد مجلد العمل
 WORKDIR /var/www
 
-RUN apt-get update && apt-get install -y \
-    git unzip curl libzip-dev \
-    && docker-php-ext-install zip pdo pdo_mysql
-
+# نسخ ملفات المشروع
 COPY . .
 
-RUN curl -sS https://getcomposer.org/installer | php \
-    && mv composer.phar /usr/local/bin/composer
-
+# تثبيت مكتبات Laravel بدون dev
 RUN composer install --no-dev --optimize-autoloader
 
-EXPOSE 8080
+# فتح البورت
+EXPOSE 8000
 
-CMD php artisan serve --host=0.0.0.0 --port=8080
+# تشغيل Laravel
+CMD php artisan serve --host=0.0.0.0 --port=$PORT
