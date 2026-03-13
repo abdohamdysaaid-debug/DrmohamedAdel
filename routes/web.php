@@ -57,7 +57,7 @@ Route::get('/admin', function(){
         return redirect('/login');
     }
 
-    if(auth()->user()->role != 'admin'){
+    if(!auth()->user()->is_admin){
         return redirect('/dashboard');
     }
 

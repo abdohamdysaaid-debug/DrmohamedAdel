@@ -149,7 +149,7 @@ opacity:0;
 
 transform:translateY(20px);
 
-transition:0.8s;
+transition:0.6s;
 
 margin-top:40px;
 
