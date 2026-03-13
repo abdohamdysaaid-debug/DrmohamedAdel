@@ -47,22 +47,22 @@ position:relative;
 .light{
 
 position:absolute;
+top: 60px;
+left:50%;
+transform:translateX(-50%);
+width:420px;
+height:420px;
 
-top:70px;
-left:-200px;
+background: radial-gradient(
+circle,
+rgba(255,230,150,0.6) 0%,
+rgba(255,230,150,0.35) 40%,
+rgba(255,230,150,0.15) 60%,
+transparent 80%
+);
 
-width:500px;
-height:400px;
-
-background:radial-gradient(circle,
-rgba(255,255,210,0.45),
-rgba(255,255,200,0.25),
-transparent 70%);
-
-opacity:0;
-
-transition:0.8s;
-
+filter:blur(35px);
+pointer-events:none;
 }
 
 /* rope */
