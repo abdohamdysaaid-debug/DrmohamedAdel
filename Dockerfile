@@ -16,8 +16,6 @@ COPY . .
 
 RUN composer install --no-dev --optimize-autoloader
 
-RUN php artisan config:cache
-RUN php artisan route:cache
-RUN php artisan view:cache
+EXPOSE 8000
 
-CMD php -S 0.0.0.0:${PORT:-8000} -t public
+CMD php -S 0.0.0.0:$PORT -t public
