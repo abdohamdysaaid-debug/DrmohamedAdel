@@ -7,7 +7,8 @@ git \
 unzip \
 libzip-dev \
 zip \
-&& docker-php-ext-install zip
+libpq-dev \
+&& docker-php-ext-install zip pdo pdo_pgsql
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
