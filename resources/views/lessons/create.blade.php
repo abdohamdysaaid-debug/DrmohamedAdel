@@ -4,12 +4,19 @@
 
 <h2>اضافة درس جديد</h2>
 
-<form method="POST" action="/lessons">
+<form method="POST" action="/add-lesson" enctype="multipart/form-data">
 @csrf
 
 <div>
 <label>اسم الدرس</label>
 <input type="text" name="title">
+</div>
+
+<br>
+
+<div>
+<label>رفع ملف PDF</label>
+<input type="file" name="pdf">
 </div>
 
 <br>

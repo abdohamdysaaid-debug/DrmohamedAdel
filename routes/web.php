@@ -129,19 +129,23 @@ Route::post('/update-student/{id}', function(\Illuminate\Http\Request $request,$
 
     return redirect('/students');
 
-});
-Route::middleware(['auth','admin'])->group(function(){
+ });
+ Route::middleware(['auth','admin'])->group(function(){
 
-Route::get('/teacher-dashboard',[ResultController::class,'teacherDashboard']);
+ Route::get('/teacher-dashboard',[ResultController::class,'teacherDashboard']);
 
-Route::get('/video-report',[ResultController::class,'videoWatchReport']);
+ Route::get('/video-report',[ResultController::class,'videoWatchReport']);
 
-Route::get('/add-lesson',function(){
-return view('lessons.create');
-});
+ Route::get('/add-lesson',function(){
+ return view('lessons.create');
+ });
 
-Route::get('/add-quiz',function(){
-return view('quizzes.create');
-});
+ Route::get('/add-quiz',function(){
+ return view('quizzes.create');
+ });
 
-});
+ });
+ use App\Http\Controllers\StudentController;
+
+ Route::post('/students/add', [StudentController::class, 'store'])->name('students.add');
+ Route::get('/students', [StudentController::class, 'index'])->name('students.index');

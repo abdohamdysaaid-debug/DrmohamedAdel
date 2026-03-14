@@ -1,4 +1,5 @@
 <h2>إدارة الطلاب</h2>
+<a href="/add-student">إضافة طالب جديد</a>
 
 <table border="1" cellpadding="10">
 

@@ -55,3 +55,13 @@ return redirect('/lessons');
 }
 
 }
+if($request->hasFile('pdf')){
+    $pdf = $request->file('pdf')->store('pdfs','public');
+}
+
+Lesson::create([
+    'title'=>$request->title,
+    'video_url'=>$request->video_url,
+    'chapter'=>$request->chapter,
+    'pdf'=>$pdf ?? null
+]);
