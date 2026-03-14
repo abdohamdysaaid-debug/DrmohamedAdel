@@ -4,21 +4,50 @@
 
 @if(auth()->user()->role == 'admin')
 
-<h1>لوحة تحكم المدرس</h1>
+<div class="container">
 
-<a href="/teacher-dashboard">📊 لوحة التحكم</a>
-<br><br>
+<h1 class="mb-4">لوحة تحكم المدرس</h1>
 
-<a href="/add-lesson">📚 إضافة درس</a>
-<br><br>
+<div style="display:flex; gap:20px; flex-wrap:wrap;">
 
-<a href="/add-quiz">❓ إضافة اختبار</a>
-<br><br>
+<a href="/teacher-dashboard" style="text-decoration:none;">
+<div style="background:#3498db;color:white;padding:25px;border-radius:10px;width:200px;text-align:center;">
+📊 <br><br>
+لوحة التحكم
+</div>
+</a>
 
-<a href="/students">👨‍🎓 إدارة الطلاب</a>
-<br><br>
+<a href="/add-lesson" style="text-decoration:none;">
+<div style="background:#2ecc71;color:white;padding:25px;border-radius:10px;width:200px;text-align:center;">
+📚 <br><br>
+إضافة درس
+</div>
+</a>
 
-<a href="/video-report">👁 تقرير مشاهدة الفيديو</a>
+<a href="/add-quiz" style="text-decoration:none;">
+<div style="background:#e67e22;color:white;padding:25px;border-radius:10px;width:200px;text-align:center;">
+❓ <br><br>
+إضافة اختبار
+</div>
+</a>
+
+<a href="/students" style="text-decoration:none;">
+<div style="background:#9b59b6;color:white;padding:25px;border-radius:10px;width:200px;text-align:center;">
+👨‍🎓 <br><br>
+إدارة الطلاب
+</div>
+</a>
+
+<a href="/video-report" style="text-decoration:none;">
+<div style="background:#34495e;color:white;padding:25px;border-radius:10px;width:200px;text-align:center;">
+👁️ <br><br>
+تقرير المشاهدة
+</div>
+</a>
+
+</div>
+
+</div>
 
 @else
 
