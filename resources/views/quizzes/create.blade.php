@@ -2,10 +2,21 @@
 
 <div style="padding:40px">
 
-<h2>اضافة سؤال</h2>
+<h2>إضافة اختبار</h2>
 
-<form method="POST" action="/quizzes">
-@csrf
+<label>نوع الاختبار</label>
+
+<select id="quizType" onchange="toggleLesson()">
+
+<option value="lesson">اختبار للدرس</option>
+
+<option value="quiz">كويز عادي</option>
+
+</select>
+
+<br><br>
+
+<div id="lessonSelect">
 
 <label>اختر الدرس</label>
 
@@ -20,27 +31,45 @@
 @endforeach
 
 </select>
-<label>السؤال</label>
-<input type="text" name="question">
 
-<label>اختيار 1</label>
-<input type="text" name="option1">
+</div>
 
-<label>اختيار 2</label>
-<input type="text" name="option2">
+<br>
 
-<label>اختيار 3</label>
-<input type="text" name="option3">
+<input type="text" name="question" placeholder="السؤال">
 
-<label>اختيار 4</label>
-<input type="text" name="option4">
+<br><br>
 
-<label>الإجابة الصحيحة</label>
-<input type="text" name="correct_answer">
+<input type="text" name="option1" placeholder="الإجابة 1">
 
-<button type="submit">إضافة السؤال</button>
+<input type="text" name="option2" placeholder="الإجابة 2">
+
+<input type="text" name="option3" placeholder="الإجابة 3">
+
+<input type="text" name="correct_answer" placeholder="الإجابة الصحيحة">
+
+<br><br>
+
+<button type="submit">إضافة الاختبار</button>
 
 </form>
+<script>
+
+function toggleLesson(){
+
+let type = document.getElementById("quizType").value;
+
+let lessonDiv = document.getElementById("lessonSelect");
+
+if(type == "quiz"){
+lessonDiv.style.display = "none";
+}else{
+lessonDiv.style.display = "block";
+}
+
+}
+
+</script>
 
 </div>
 

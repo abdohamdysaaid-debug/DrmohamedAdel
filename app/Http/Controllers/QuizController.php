@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Lesson;
 use App\Models\Quiz;
 use Illuminate\Http\Request;
 use App\Models\Result;
@@ -9,7 +9,12 @@ use Illuminate\Support\Facades\Auth;
 
 class QuizController extends Controller
 {
-    //
+   public function create()
+{
+    $lessons = Lesson::all();
+
+    return view('quizzes.create', compact('lessons'));
+}
    
 public function store(Request $request)
 {
