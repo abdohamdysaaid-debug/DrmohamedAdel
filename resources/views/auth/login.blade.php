@@ -340,7 +340,7 @@ if(!res.ok){
 
 password.style.border="2px solid red";
 
-error.innerText="❌ الإيميل أو الباسورد غير صحيح";
+error.innerText="الإيميل او الباسورد غير صحيح ❌تواصل مع الدعم لو نسيت ي زهيمر";
 
 }else{
 
