@@ -267,7 +267,7 @@ Dr. Mohamed Adel welcomes you 🚀
 <label>Password</label>
 <input type="password" name="password" id="password">
 
-<div id="loginError" style="color:red;font-size:13px;"></div>
+<div id="loginError" style="color:red;font-size:13px"></div>
 
 <button type="submit">Sign In</button>
 
@@ -324,6 +324,7 @@ headers:{
 "Content-Type":"application/json",
 "X-CSRF-TOKEN":"{{ csrf_token() }}"
 },
+credentials:"same-origin",
 
 body:JSON.stringify({
 email: email.value,
@@ -334,7 +335,7 @@ password: password.value
 
 .then(res=>{
 
-if(res.status === 401 || res.status === 422){
+if(!res.ok){
 
 password.style.border = "2px solid red";
 
