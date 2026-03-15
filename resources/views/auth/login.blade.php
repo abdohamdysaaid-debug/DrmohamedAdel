@@ -301,24 +301,38 @@ const email = document.getElementById("email");
 const password = document.getElementById("password");
 const error = document.getElementById("loginError");
 
-/* أثناء الكتابة */
-
-email.addEventListener("input", () => {
+email.addEventListener("input", ()=>{
 
 if(email.value.length > 3){
-email.style.border = "2px solid #22c55e";
+email.style.border="2px solid #22c55e";
 }
 
 });
 
-password.addEventListener("input", () => {
+password.addEventListener("input", ()=>{
 
 if(password.value.length > 0){
-
-password.style.border = "2px solid #22c55e";
-error.innerText = "";
-
+password.style.border="2px solid #22c55e";
+error.innerText="";
 }
+
+});
+
+document.getElementById("loginForm").addEventListener("submit", function(e){
+
+e.preventDefault();
+
+fetch("/login",{
+method:"POST",
+headers:{
+"Content-Type":"application/json",
+"X-CSRF-TOKEN":"{{ csrf_token() }}"
+},
+body:JSON.stringify({
+email: email.value,
+password: password.value
+})
+})
 
 });
 
