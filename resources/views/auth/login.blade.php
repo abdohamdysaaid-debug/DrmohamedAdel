@@ -348,20 +348,19 @@ password: password.value
 
 .then(res => {
 
-if(res.status !== 200){
+if(!res.ok){
 
 password.style.border="2px solid red";
 
-error.innerText="❌ الإيميل أو الباسورد غير صحيح — لو نسيت الباسورد تواصل مع الدعم";
+error.innerText=" ❌الإيميل أو الباسورد غير صحيح تواصل مع الدعم إذا كنت تعتقد أن هناك خطأ";
 
 let lamp = document.getElementById("lamp");
 let light = document.getElementById("light");
 
-lamp.style.background="#ff4d4d";
+lamp.style.background = "#ff4d4d";
+light.style.background = "radial-gradient(circle, rgba(255,0,0,0.7) 0%, rgba(255,0,0,0.3) 50%, transparent 80%)";
 
-light.style.background="radial-gradient(circle, rgba(255,0,0,0.7) 0%, rgba(255,0,0,0.3) 50%, transparent 80%)";
-
-light.style.animation="blink 0.4s ease 3";
+light.style.animation = "blink 0.4s 3";
 
 document.getElementById("errorSound").play();
 
