@@ -324,6 +324,7 @@ headers:{
 "Content-Type":"application/json",
 "X-CSRF-TOKEN":"{{ csrf_token() }}"
 },
+
 credentials:"same-origin",
 
 body:JSON.stringify({
@@ -337,9 +338,9 @@ password: password.value
 
 if(!res.ok){
 
-password.style.border = "2px solid red";
+password.style.border="2px solid red";
 
-error.innerText = "❌ الباسورد أو الإيميل غير صحيح";
+error.innerText="❌ الإيميل أو الباسورد غير صحيح";
 
 }else{
 
