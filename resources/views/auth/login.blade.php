@@ -250,14 +250,9 @@ Dr. Mohamed Adel welcomes you 🚀
 
 <h2>Login</h2>
 
-@if ($errors->any())
-<div style="background:#ffe6e6;padding:12px;border-radius:8px;color:#c0392b;margin-bottom:15px;text-align:center;">
-❌ كلمة المرور أو الإيميل غير صحيح <br>
-هل نسيت كلمة السر؟ أم أنك جاسوس فيزيائي؟ 🕵️‍♂️⚛️
-</div>
-@endif
 
-<form method="POST" action="/login">
+
+<form id="loginForm">
 
 @csrf
 
@@ -285,22 +280,54 @@ Dr. Mohamed Adel welcomes you 🚀
 
 <script>
 
-const passwordInput=document.getElementById("password");
-const errorDiv=document.getElementById("passwordError");
+const form = document.getElementById("loginForm");
+const password = document.getElementById("password");
+const error = document.getElementById("loginError");
 
-passwordInput.addEventListener("input",function(){
+form.addEventListener("submit", function(e){
 
-if(passwordInput.value===""){
+e.preventDefault();
 
-passwordInput.style.border="2px solid red";
-errorDiv.innerText="❌ كلمة السر غلط";
+let email = form.querySelector('input[name="email"]').value;
+let pass = password.value;
+
+fetch("/login", {
+
+method: "POST",
+
+headers: {
+
+"Content-Type": "application/json",
+
+"X-CSRF-TOKEN": "{{ csrf_token() }}"
+
+},
+
+body: JSON.stringify({
+
+email: email,
+
+password: pass
+
+})
+
+})
+
+.then(res => {
+
+if(res.status === 422 || res.status === 401){
+
+password.style.border = "2px solid red";
+
+error.innerText = "❌ الباسورد أو الإيميل غير صحيح";
 
 }else{
 
-passwordInput.style.border="2px solid #22c55e";
-errorDiv.innerText="";
+location.href = "/dashboard";
 
 }
+
+});
 
 });
 
