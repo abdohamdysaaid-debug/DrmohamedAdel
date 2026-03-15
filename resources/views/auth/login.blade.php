@@ -1,12 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-
-<h3 style="text-align:center;margin-top:40px;color:#f7d77f;">
-Welcome to the greatest physics platform!  
-Dr. Mohamed Adel welcomes you 🚀
-</h3>
+    
 <title>Login</title>
 
 <style>
