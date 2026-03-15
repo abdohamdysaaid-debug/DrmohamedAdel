@@ -297,90 +297,49 @@ Dr. Mohamed Adel welcomes you 🚀
 
 <script>
 
+const form = document.getElementById("loginForm");
 const email = document.getElementById("email");
 const password = document.getElementById("password");
 const error = document.getElementById("loginError");
 
-email.addEventListener("input", ()=>{
+form.addEventListener("submit", function(e){
+    e.preventDefault(); // يمنع إعادة تحميل الصفحة
 
-if(email.value.length > 3){
-email.style.border="2px solid #22c55e";
-}
+    fetch("/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": "{{ csrf_token() }}"
+        },
+        body: JSON.stringify({
+            email: email.value,
+            password: password.value
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
 
+        if(data.error){
+
+            password.style.border = "2px solid red";
+            error.innerText = "❌ الإيميل أو الباسورد غير صحيح تواصل مع الدعم إذا كنت تواجه مشكلة";
+
+            let lamp = document.getElementById("lamp");
+            let light = document.getElementById("light");
+
+            lamp.style.background = "#ff4d4d";
+            light.style.animation = "blink 0.4s 3";
+
+            document.getElementById("errorSound").play();
+
+        }else if(data.redirect){
+
+            window.location = data.redirect;
+
+        }
+
+    });
 });
-
-password.addEventListener("input", ()=>{
-
-if(password.value.length > 0){
-password.style.border="2px solid #22c55e";
-error.innerText="";
-}
-
-});
-
-document.getElementById("loginForm").addEventListener("submit", function(e){
-
-e.preventDefault();
-
-fetch("/login",{
-method:"POST",
-headers:{
-"Content-Type":"application/json",
-"X-CSRF-TOKEN":"{{ csrf_token() }}"
-},
-body:JSON.stringify({
-email: email.value,
-password: password.value
-})
-})
-
-});
-
-/* عند الضغط على تسجيل الدخول */
-
-document.getElementById("loginForm").addEventListener("submit", function(e){
-
-e.preventDefault();
-
-fetch("/login",{
-
-method:"POST",
-
-headers:{
-"Content-Type":"application/json",
-"X-CSRF-TOKEN":"{{ csrf_token() }}"
-},
-
-credentials:"same-origin",
-
-body:JSON.stringify({
-email: email.value,
-password: password.value
-})
-
-})
-
-.then(res => {
-
-if(!res.ok){
-
-password.style.border="2px solid red";
-
-error.innerText=" ❌الإيميل أو الباسورد غير صحيح تواصل مع الدعم إذا كنت تعتقد أن هناك خطأ";
-
-let lamp = document.getElementById("lamp");
-let light = document.getElementById("light");
-
-lamp.style.background = "#ff4d4d";
-light.style.background = "radial-gradient(circle, rgba(255,0,0,0.7) 0%, rgba(255,0,0,0.3) 50%, transparent 80%)";
-
-light.style.animation = "blink 0.4s 3";
-
-document.getElementById("errorSound").play();
-
-}
-
-})
 
 </script>
 

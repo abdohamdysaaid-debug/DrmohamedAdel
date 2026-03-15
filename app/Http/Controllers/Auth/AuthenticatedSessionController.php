@@ -31,7 +31,7 @@ class AuthenticatedSessionController extends Controller
     } catch (\Illuminate\Validation\ValidationException $e) {
 
         return response()->json([
-            'error' => 'invalid'
+            'error' => true
         ], 401);
 
     }
