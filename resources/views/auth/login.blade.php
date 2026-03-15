@@ -302,6 +302,22 @@ const email = document.getElementById("email");
 const password = document.getElementById("password");
 const error = document.getElementById("loginError");
 
+email.addEventListener("input", function(){
+    if(email.value.length > 0){
+        email.style.border = "2px solid #22c55e";
+    }else{
+        email.style.border = "1px solid #333";
+    }
+});
+
+password.addEventListener("input", function(){
+    if(password.value.length > 0){
+        password.style.border = "2px solid #22c55e";
+    }else{
+        password.style.border = "1px solid #333";
+    }
+});
+
 form.addEventListener("submit", function(e){
     e.preventDefault(); // يمنع إعادة تحميل الصفحة
 
