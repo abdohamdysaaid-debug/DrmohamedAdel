@@ -2,13 +2,11 @@
 <html>
 <head>
 
-
 <title>Login</title>
 
 <style>
 
 body{
-
 background:#0b0b0b;
 height:100vh;
 display:flex;
@@ -17,33 +15,28 @@ align-items:center;
 flex-direction:column;
 font-family:Segoe UI;
 color:white;
-
 }
 
-/* lamp */
+/* lamp wrapper */
 
 .lamp-wrapper{
-
 position:relative;
 display:flex;
 flex-direction:column;
 align-items:center;
-
 }
 
 /* lamp head */
 
 .lamp{
-
 width:180px;
 height:90px;
 background:#f0f0f0;
 border-radius:90px 90px 20px 20px;
 position:relative;
-
 }
 
-/* soft light */
+/* light */
 
 .light{
 position:absolute;
@@ -71,75 +64,52 @@ transition:0.6s;
 /* rope */
 
 .rope{
-
 width:3px;
-
 height:55px;
-
 background:white;
-
 position:absolute;
-
 top:60px;
-
 left:65%;
-
 cursor:pointer;
-
 }
 
 /* ball */
 
 .ball{
-
 width:14px;
 height:14px;
-
 background:#e6c26a;
-
 border-radius:50%;
-
 position:absolute;
-
 bottom:-7px;
 left:-5px;
-
 }
 
 /* stand */
 
 .stand{
-
 width:10px;
 height:120px;
 background:#f0f0f0;
-
 }
 
 /* base */
 
 .base{
-
 width:140px;
 height:15px;
 background:#f0f0f0;
 border-radius:10px;
-
 }
 
 /* shadow */
 
 .shadow{
-
 width:200px;
 height:25px;
-
 background:rgba(0,0,0,0.6);
-
 border-radius:50%;
-
 filter:blur(8px);
-
 }
 
 /* login box */
@@ -147,7 +117,6 @@ filter:blur(8px);
 .login-box{
 
 opacity:0;
-
 transform:translateY(20px);
 
 transition:0.6s;
@@ -176,43 +145,29 @@ width:260px;
 /* title */
 
 .login-box h2{
-
 text-align:center;
 margin:0;
-
 }
 
 /* inputs */
 
 input{
-
 width:100%;
-
 padding:12px;
-
 border:none;
-
 border-radius:8px;
-
 background:#111;
-
 color:white;
-
 border:1px solid #333;
-
 outline:none;
-
 }
 
 input:focus{
-
 border-color:#f7d77f;
-
 box-shadow:0 0 10px rgba(255,215,120,0.6);
-
 }
 
-/* sign in button */
+/* button */
 
 button{
 
@@ -246,7 +201,7 @@ box-shadow:0 0 10px rgba(255,215,120,0.6);
 
 }
 
-/* swing */
+/* swing animation */
 
 @keyframes swing{
 
@@ -263,7 +218,6 @@ box-shadow:0 0 10px rgba(255,215,120,0.6);
 </head>
 
 <body>
-
 
 <div class="lamp-wrapper">
 
@@ -287,9 +241,6 @@ box-shadow:0 0 10px rgba(255,215,120,0.6);
 
 </div>
 
-
-
-<div class="login-box" id="loginBox">
 <div class="login-box" id="loginBox">
 
 <div style="text-align:center;color:#bbb;font-size:14px;margin-bottom:10px;">
@@ -298,34 +249,31 @@ Dr. Mohamed Adel welcomes you 🚀
 </div>
 
 <h2>Login</h2>
-<h2>Login</h2>
+
 @if ($errors->any())
 <div style="background:#ffe6e6;padding:12px;border-radius:8px;color:#c0392b;margin-bottom:15px;text-align:center;">
-❌ كلمة المرور أو الإيميل غير صحيح  
-هل نسيت كلمة السر؟  
-أم أنك جاسوس فيزيائي؟ 🕵️‍♂️⚛️
+❌ كلمة المرور أو الإيميل غير صحيح <br>
+هل نسيت كلمة السر؟ أم أنك جاسوس فيزيائي؟ 🕵️‍♂️⚛️
 </div>
 @endif
+
 <form method="POST" action="/login">
 
 @csrf
 
 <label>Email</label>
-
 <input type="email" name="email">
 
 <label>Password</label>
 <input type="password" name="password" id="password">
 
-<div id="passwordError"></div>
+<div id="passwordError" style="color:red;font-size:13px;"></div>
 
 <button type="submit">Sign In</button>
 
 </form>
 
 </div>
-
-
 
 <audio id="pullSound">
 <source src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3">
@@ -335,44 +283,37 @@ Dr. Mohamed Adel welcomes you 🚀
 <source src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3">
 </audio>
 
-
-
-
-
 <script>
 
-const passwordInput = document.getElementById("password");
-const errorDiv = document.getElementById("passwordError");
+const passwordInput=document.getElementById("password");
+const errorDiv=document.getElementById("passwordError");
 
-passwordInput.addEventListener("input", function(){
+passwordInput.addEventListener("input",function(){
 
-if(passwordInput.value.length === ""){
+if(passwordInput.value===""){
 
-passwordInput.style.border = "2px solid red";
-errorDiv.innerText = "❌ كلمة السر غلط";
+passwordInput.style.border="2px solid red";
+errorDiv.innerText="❌ كلمة السر غلط";
 
 }else{
 
-passwordInput.style.border = "2px solid #22c55e";
-errorDiv.innerText = "";
+passwordInput.style.border="2px solid #22c55e";
+errorDiv.innerText="";
 
 }
 
 });
- 
+
 </script>
 
 <script>
+
 let rope=document.getElementById("rope");
-
 let lamp=document.getElementById("lamp");
-
 let light=document.getElementById("light");
-
 let login=document.getElementById("loginBox");
 
 let pull=document.getElementById("pullSound");
-
 let click=document.getElementById("clickSound");
 
 let startY;
@@ -382,11 +323,9 @@ rope.addEventListener("mousedown",(e)=>{
 startY=e.clientY;
 
 document.addEventListener("mousemove",drag);
-
 document.addEventListener("mouseup",stop);
 
 });
-
 
 function drag(e){
 
@@ -400,18 +339,14 @@ rope.style.transform="translateY("+move+"px)";
 
 }
 
-
 function stop(){
 
 document.removeEventListener("mousemove",drag);
 
 document.removeEventListener("mouseup",stop);
 
-/* rope return */
-
 rope.style.transform="translateY(0)";
 
-/* sounds */
 
 pull.play();
 
@@ -421,28 +356,20 @@ click.play();
 
 },200);
 
-/* light on */
-
 light.style.opacity="1";
 
-/* swing */
-
 lamp.style.animation="swing 1s";
-
-/* show login */
 
 setTimeout(()=>{
 
 login.style.opacity="1";
-
 login.style.transform="translateY(0)";
 
 },800);
 
-} 
+}
+
 </script>
 
-
 </body>
-
 </html>
