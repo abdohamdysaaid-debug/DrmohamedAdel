@@ -257,12 +257,12 @@ Dr. Mohamed Adel welcomes you 🚀
 @csrf
 
 <label>Email</label>
-<input type="email" name="email">
+<input type="email" name="email" id="email">
 
 <label>Password</label>
 <input type="password" name="password" id="password">
 
-<div id="passwordError" style="color:red;font-size:13px;"></div>
+<div id="loginError" style="color:red;font-size:13px;"></div>
 
 <button type="submit">Sign In</button>
 
@@ -281,49 +281,57 @@ Dr. Mohamed Adel welcomes you 🚀
 <script>
 
 const form = document.getElementById("loginForm");
+const email = document.getElementById("email");
 const password = document.getElementById("password");
 const error = document.getElementById("loginError");
+
+/* اخضر أثناء الكتابة */
+
+email.addEventListener("input", () => {
+
+email.style.border = "2px solid #22c55e";
+
+});
+
+password.addEventListener("input", () => {
+
+password.style.border = "2px solid #22c55e";
+error.innerText = "";
+
+});
+
+/* منع الريفريش */
 
 form.addEventListener("submit", function(e){
 
 e.preventDefault();
 
-let email = form.querySelector('input[name="email"]').value;
-let pass = password.value;
+fetch("/login",{
 
-fetch("/login", {
+method:"POST",
 
-method: "POST",
-
-headers: {
-
-"Content-Type": "application/json",
-
-"X-CSRF-TOKEN": "{{ csrf_token() }}"
-
+headers:{
+"Content-Type":"application/json",
+"X-CSRF-TOKEN":"{{ csrf_token() }}"
 },
 
-body: JSON.stringify({
-
-email: email,
-
-password: pass
-
+body:JSON.stringify({
+email: email.value,
+password: password.value
 })
 
 })
 
-.then(res => {
+.then(res=>{
 
-if(res.status === 422 || res.status === 401){
+if(res.status===401 || res.status===422){
 
-password.style.border = "2px solid red";
-
-error.innerText = "❌ الباسورد أو الإيميل غير صحيح";
+password.style.border="2px solid red";
+error.innerText="❌ الباسورد أو الإيميل غير صحيح";
 
 }else{
 
-location.href = "/dashboard";
+window.location="/dashboard";
 
 }
 
