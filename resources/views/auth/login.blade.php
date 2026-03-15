@@ -294,7 +294,14 @@ box-shadow:0 0 10px rgba(255,215,120,0.6);
 
 
 <div class="login-box" id="loginBox">
+<div class="login-box" id="loginBox">
 
+<div style="text-align:center;color:#bbb;font-size:14px;margin-bottom:10px;">
+Welcome to the greatest physics platform! <br>
+Dr. Mohamed Adel welcomes you 🚀
+</div>
+
+<h2>Login</h2>
 <h2>Login</h2>
 @if ($errors->any())
 <div style="background:#ffe6e6;padding:12px;border-radius:8px;color:#c0392b;margin-bottom:15px;text-align:center;">
