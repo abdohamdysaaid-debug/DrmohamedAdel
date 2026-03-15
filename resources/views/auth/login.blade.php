@@ -203,16 +203,21 @@ box-shadow:0 0 10px rgba(255,215,120,0.6);
 
 /* swing animation */
 
-@keyframes swing{
+@keyframes errorShake{
 
 0%{transform:rotate(0)}
-25%{transform:rotate(6deg)}
-50%{transform:rotate(-6deg)}
-75%{transform:rotate(3deg)}
+25%{transform:rotate(10deg)}
+50%{transform:rotate(-10deg)}
+75%{transform:rotate(6deg)}
 100%{transform:rotate(0)}
 
 }
 
+.lamp-error{
+
+background:#ff4d4d !important;
+
+}
 </style>
 
 </head>
@@ -327,17 +332,22 @@ password: password.value
 if(res.status===401 || res.status===422){
 
 password.style.border="2px solid red";
+
 error.innerText="❌ الباسورد أو الإيميل غير صحيح";
 
-}else{
+lamp.classList.add("lamp-error");
 
-window.location="/dashboard";
+lamp.style.animation="errorShake 0.6s";
+
+setTimeout(()=>{
+
+lamp.classList.remove("lamp-error");
+
+lamp.style.animation="";
+
+},700);
 
 }
-
-});
-
-});
 
 </script>
 
