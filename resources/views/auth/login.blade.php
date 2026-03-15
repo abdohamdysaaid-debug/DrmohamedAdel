@@ -285,29 +285,34 @@ Dr. Mohamed Adel welcomes you 🚀
 
 <script>
 
-const form = document.getElementById("loginForm");
 const email = document.getElementById("email");
 const password = document.getElementById("password");
 const error = document.getElementById("loginError");
 
-/* اخضر أثناء الكتابة */
+/* أثناء الكتابة */
 
 email.addEventListener("input", () => {
 
+if(email.value.length > 3){
 email.style.border = "2px solid #22c55e";
+}
 
 });
 
 password.addEventListener("input", () => {
 
+if(password.value.length > 0){
+
 password.style.border = "2px solid #22c55e";
 error.innerText = "";
 
+}
+
 });
 
-/* منع الريفريش */
+/* عند الضغط على تسجيل الدخول */
 
-form.addEventListener("submit", function(e){
+document.getElementById("loginForm").addEventListener("submit", function(e){
 
 e.preventDefault();
 
@@ -329,25 +334,21 @@ password: password.value
 
 .then(res=>{
 
-if(res.status===401 || res.status===422){
+if(res.status === 401 || res.status === 422){
 
-password.style.border="2px solid red";
+password.style.border = "2px solid red";
 
-error.innerText="❌ الباسورد أو الإيميل غير صحيح";
+error.innerText = "❌ الباسورد أو الإيميل غير صحيح";
 
-lamp.classList.add("lamp-error");
+}else{
 
-lamp.style.animation="errorShake 0.6s";
-
-setTimeout(()=>{
-
-lamp.classList.remove("lamp-error");
-
-lamp.style.animation="";
-
-},700);
+window.location="/dashboard";
 
 }
+
+});
+
+});
 
 </script>
 
