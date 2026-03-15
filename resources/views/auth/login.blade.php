@@ -213,9 +213,18 @@ box-shadow:0 0 10px rgba(255,215,120,0.6);
 
 }
 
+@keyframes blink{
+
+0%{opacity:1}
+50%{opacity:0.3}
+100%{opacity:1}
+
+}
+
 .lamp-error{
 
 background:#ff4d4d !important;
+animation:errorShake 0.6s;
 
 }
 </style>
@@ -282,6 +291,9 @@ Dr. Mohamed Adel welcomes you 🚀
 <audio id="clickSound">
 <source src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3">
 </audio>
+<audio id="errorSound">
+<source src="https://assets.mixkit.co/active_storage/sfx/2221/2221-preview.mp3">
+</audio>
 
 <script>
 
@@ -334,23 +346,28 @@ password: password.value
 
 })
 
-.then(res=>{
+.then(res => {
 
-if(!res.ok){
+if(res.status !== 200){
 
 password.style.border="2px solid red";
 
-error.innerText="الإيميل او الباسورد غير صحيح ❌تواصل مع الدعم لو نسيت ي زهيمر";
+error.innerText="❌ الإيميل أو الباسورد غير صحيح — لو نسيت الباسورد تواصل مع الدعم";
 
-}else{
+let lamp = document.getElementById("lamp");
+let light = document.getElementById("light");
 
-window.location="/dashboard";
+lamp.style.background="#ff4d4d";
+
+light.style.background="radial-gradient(circle, rgba(255,0,0,0.7) 0%, rgba(255,0,0,0.3) 50%, transparent 80%)";
+
+light.style.animation="blink 0.4s ease 3";
+
+document.getElementById("errorSound").play();
 
 }
 
-});
-
-});
+})
 
 </script>
 
@@ -418,6 +435,101 @@ login.style.transform="translateY(0)";
 }
 
 </script>
+
+<a href="https://wa.me/201055669552" class="whatsapp-btn" target="_blank">
+
+<span class="tooltip">تواصل مع الدعم</span>
+
+<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="white" viewBox="0 0 24 24">
+<path d="M20.52 3.48A11.82 11.82 0 0012.03 0C5.4 0 .05 5.35.05 11.98c0 2.11.55 4.17 1.6 5.99L0 24l6.2-1.63a11.93 11.93 0 005.83 1.49h.01c6.63 0 11.98-5.35 11.98-11.98 0-3.2-1.25-6.2-3.5-8.4zM12.04 21.5c-1.81 0-3.57-.49-5.11-1.42l-.36-.21-3.68.97.98-3.59-.23-.37a9.43 9.43 0 01-1.46-5.01c0-5.22 4.25-9.47 9.48-9.47 2.53 0 4.9.99 6.68 2.77a9.4 9.4 0 012.78 6.69c0 5.22-4.25 9.47-9.48 9.47zm5.2-7.1c-.28-.14-1.67-.82-1.93-.91-.26-.1-.45-.14-.64.14-.19.28-.73.9-.9 1.09-.17.19-.33.21-.61.07-.28-.14-1.18-.43-2.25-1.36-.83-.74-1.4-1.65-1.56-1.93-.16-.28-.02-.43.12-.57.13-.13.28-.33.42-.49.14-.17.19-.28.28-.47.1-.19.05-.36-.02-.5-.07-.14-.64-1.55-.88-2.12-.23-.55-.46-.48-.64-.49h-.54c-.19 0-.5.07-.76.36-.26.28-1 1-1 2.44 0 1.43 1.03 2.81 1.18 3 .14.19 2.02 3.08 4.9 4.32.69.3 1.22.48 1.64.62.69.22 1.32.19 1.82.12.56-.08 1.67-.68 1.9-1.34.23-.66.23-1.23.16-1.34-.07-.11-.26-.17-.54-.31z"/>
+</svg>
+
+</a>
+
+<style>
+
+.whatsapp-btn{
+
+position:fixed;
+bottom:25px;
+right:25px;
+
+width:65px;
+height:65px;
+
+background:#25D366;
+
+border-radius:50%;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+box-shadow:0 0 15px rgba(0,0,0,0.4);
+
+cursor:pointer;
+
+z-index:999;
+
+animation:pulse 2s infinite;
+
+}
+
+.whatsapp-btn:hover{
+
+transform:scale(1.1);
+
+}
+
+/* الرسالة */
+
+.tooltip{
+
+position:absolute;
+
+right:75px;
+
+background:#111;
+
+color:white;
+
+padding:6px 10px;
+
+border-radius:6px;
+
+font-size:13px;
+
+white-space:nowrap;
+
+opacity:0;
+
+transform:translateY(5px);
+
+transition:0.3s;
+
+}
+
+.whatsapp-btn:hover .tooltip{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+/* pulse animation */
+
+@keyframes pulse{
+
+0%{box-shadow:0 0 0 0 rgba(37,211,102,0.7)}
+
+70%{box-shadow:0 0 0 15px rgba(37,211,102,0)}
+
+100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}
+
+}
+
+</style>
 
 </body>
 </html>
