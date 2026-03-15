@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    
+
+
 <title>Login</title>
 
 <style>
@@ -336,8 +337,32 @@ Dr. Mohamed Adel welcomes you 🚀
 
 
 
+
+
 <script>
 
+const passwordInput = document.getElementById("password");
+const errorDiv = document.getElementById("passwordError");
+
+passwordInput.addEventListener("input", function(){
+
+if(passwordInput.value.length === ""){
+
+passwordInput.style.border = "2px solid red";
+errorDiv.innerText = "❌ كلمة السر غلط";
+
+}else{
+
+passwordInput.style.border = "2px solid #22c55e";
+errorDiv.innerText = "";
+
+}
+
+});
+ 
+</script>
+
+<script>
 let rope=document.getElementById("rope");
 
 let lamp=document.getElementById("lamp");
@@ -414,29 +439,7 @@ login.style.transform="translateY(0)";
 
 },800);
 
-}
-
-<script>
-
-const passwordInput = document.getElementById("password");
-const errorDiv = document.getElementById("passwordError");
-
-passwordInput.addEventListener("input", function(){
-
-if(passwordInput.value.length === ""){
-
-passwordInput.style.border = "2px solid red";
-errorDiv.innerText = "❌ كلمة السر غلط";
-
-}else{
-
-passwordInput.style.border = "2px solid #22c55e";
-errorDiv.innerText = "";
-
-}
-
-});
-
+} 
 </script>
 
 
