@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+<h3 style="text-align:center;margin-bottom:20px;color:#2c3e50;">
+Welcome to the greatest physics platform!  
+Dr. Mohamed Adel welcomes you 🚀
+</h3>
 
-<title>Login</title>
+<h2>Login</h2>
 
 <style>
 
@@ -291,7 +295,13 @@ box-shadow:0 0 10px rgba(255,215,120,0.6);
 <div class="login-box" id="loginBox">
 
 <h2>Login</h2>
-
+@if ($errors->any())
+<div style="background:#ffe6e6;padding:12px;border-radius:8px;color:#c0392b;margin-bottom:15px;text-align:center;">
+❌ كلمة المرور أو الإيميل غير صحيح  
+هل نسيت كلمة السر؟  
+أم أنك جاسوس فيزيائي؟ 🕵️‍♂️⚛️
+</div>
+@endif
 <form method="POST" action="/login">
 
 @csrf
