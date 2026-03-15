@@ -312,8 +312,9 @@ box-shadow:0 0 10px rgba(255,215,120,0.6);
 <input type="email" name="email">
 
 <label>Password</label>
+<input type="password" name="password" id="password">
 
-<input type="password" name="password">
+<div id="passwordError"></div>
 
 <button type="submit">Sign In</button>
 
@@ -412,6 +413,27 @@ login.style.transform="translateY(0)";
 },800);
 
 }
+
+<script>
+
+const passwordInput = document.getElementById("password");
+const errorDiv = document.getElementById("passwordError");
+
+passwordInput.addEventListener("input", function(){
+
+if(passwordInput.value.length === ""){
+
+passwordInput.style.border = "2px solid red";
+errorDiv.innerText = "❌ كلمة السر غلط";
+
+}else{
+
+passwordInput.style.border = "2px solid #22c55e";
+errorDiv.innerText = "";
+
+}
+
+});
 
 </script>
 
