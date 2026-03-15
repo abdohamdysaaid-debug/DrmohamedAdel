@@ -16,7 +16,13 @@
     </head>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <body class="font-sans antialiased">
+<div class="mb-4 text-center">
 
+<h5>{{ auth()->user()->name }}</h5>
+
+<small>{{ auth()->user()->email }}</small>
+
+</div>
 <div class="d-flex">
 
 <div class="bg-dark text-white p-3" style="width:250px; min-height:100vh;">
@@ -42,6 +48,20 @@
 
 <li class="nav-item">
 <a class="nav-link text-white" href="/video-report">👁️ تقرير المشاهدة</a>
+</li>
+<li class="nav-item mt-4">
+<a class="nav-link text-white" href="/profile">
+👤 البروفايل
+</a>
+</li>
+
+<li class="nav-item">
+<form method="POST" action="{{ route('logout') }}">
+@csrf
+<button class="nav-link text-white" style="background:none;border:none;">
+🚪 تسجيل الخروج
+</button>
+</form>
 </li>
 
 </ul>
