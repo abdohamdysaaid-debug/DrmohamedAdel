@@ -151,41 +151,6 @@ bottom:30px;
 width:200px;
 
 }
-.sidebar h4{
-
-margin-bottom:30px;
-font-weight:bold;
-text-align:center;
-font-size:20px;
-letter-spacing:1px;
-
-}
-
-.sidebar a{
-
-display:block;
-padding:12px 15px;
-margin-bottom:8px;
-border-radius:10px;
-color:white;
-text-decoration:none;
-transition:0.3s;
-
-}
-
-.sidebar a:hover{
-
-background:#334155;
-
-}
-
-.logout-btn{
-
-position:absolute;
-bottom:30px;
-width:200px;
-
-}
 
 </style>
 
