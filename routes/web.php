@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\QuizController;
+use App\Http\Controllers\StudentController;
 
+Route::get('/add-quiz', [QuizController::class, 'create']);
 Route::get('/', function () {
     return redirect('/login');
 });
@@ -33,7 +36,6 @@ Route::post('/lessons', [LessonController::class,'store']);
 Route::get('/add-lesson', function () {
     return view('lessons.create');
 });
-use App\Http\Controllers\QuizController;
 
 Route::get('/add-quiz', function(){
 
@@ -140,13 +142,7 @@ Route::post('/update-student/{id}', function(\Illuminate\Http\Request $request,$
  Route::get('/add-lesson',function(){
  return view('lessons.create');
  });
-
- Route::get('/add-quiz',function(){
- return view('quizzes.create');
- });
-
- });
- use App\Http\Controllers\StudentController;
+ 
 
  Route::post('/students/add', [StudentController::class, 'store'])->name('students.add');
  Route::get('/students', [StudentController::class, 'index'])->name('students.index');
@@ -169,4 +165,5 @@ Route::post('/students/delete/{id}', function($id){
 
 return redirect('/students');
 
+});
 });
