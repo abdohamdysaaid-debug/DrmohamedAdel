@@ -26,6 +26,7 @@
 <div class="d-flex">
 
 <div class="bg-dark text-white p-3" style="width:250px; min-height:100vh;">
+@if(auth()->user()->role == 'admin')    
 <h4>لوحة التحكم</h4>
 
 <ul class="nav flex-column mt-4">
@@ -66,7 +67,7 @@
 
 </ul>
 </div>
-
+@endif
 <div class="flex-grow-1 p-4">
 {{ $slot }}
 </div>
