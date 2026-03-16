@@ -167,3 +167,7 @@ return redirect('/students');
 
 });
 });
+
+Route::get('/student-dashboard', function () {
+    return view('student.dashboard');
+})->middleware('auth');

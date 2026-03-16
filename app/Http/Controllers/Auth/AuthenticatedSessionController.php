@@ -48,17 +48,21 @@ class AuthenticatedSessionController extends Controller
        ]);
 
      }
-     if($user->is_admin){
-        return response()->json([
-            'redirect' => '/admin'
-        ]);
+     $user = auth()->user();
+
+     if ($user->role == 'admin') {
+      return response()->json([
+        'redirect' => '/dashboard'
+     ]);
+    }
+
+     if ($user->role == 'student') {
+     return response()->json([
+        'redirect' => '/student-dashboard'
+     ]);
      }
 
-    return response()->json([
-        'redirect' => '/dashboard'
-    ]);
-}
-
+     }
     /**
      * Destroy an authenticated session.
      */
