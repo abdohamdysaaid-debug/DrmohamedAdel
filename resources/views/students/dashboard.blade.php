@@ -166,24 +166,6 @@ padding:24px;
 
 </a>
 
-
-<a href="/leaderboard" class="card purple">
-
-<span class="icon">🏆</span>
-
-ترتيبي
-
-</a>
-
-
-<a href="/subscription" class="card red">
-
-<span class="icon">💳</span>
-
-اشتراكي
-
-</a>
-
 </div>
 
 </div>
