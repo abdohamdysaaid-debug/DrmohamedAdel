@@ -15,7 +15,6 @@
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 @vite(['resources/css/app.css','resources/js/app.js'])
 
 </head>
@@ -92,19 +91,64 @@ letter-spacing:1px;
 
 .sidebar{
 
+width:260px;
+min-height:100vh;
+background:linear-gradient(180deg,#1e3a8a,#0f172a);
+color:white;
+padding:25px 20px;
 position:fixed;
 top:0;
-left:-260px;
-width:250px;
-min-height:100vh;
-
-background:linear-gradient(180deg,#1e3a8a,#0f172a);
+transform:translateX(-100%);
+transition:0.35s ease;
 backdrop-filter:blur(10px);
+box-shadow:5px 0 25px rgba(0,0,0,0.2);
 
+}
+
+.sidebar h4{
+
+margin-bottom:35px;
+font-weight:bold;
+font-size:20px;
+display:flex;
+align-items:center;
+gap:8px;
+
+}
+
+.sidebar a{
+
+display:flex;
+align-items:center;
+gap:12px;
+padding:12px 15px;
+margin-bottom:10px;
+border-radius:12px;
 color:white;
-padding:25px;
-transition:0.3s;
-z-index:999;
+text-decoration:none;
+font-size:15px;
+transition:0.25s;
+
+}
+
+.sidebar a:hover{
+
+background:rgba(255,255,255,0.12);
+transform:translateX(-4px);
+
+}
+
+.sidebar a i{
+
+font-size:18px;
+
+}
+
+.logout-btn{
+
+position:absolute;
+bottom:30px;
+width:200px;
 
 }
 .sidebar h4{
@@ -149,21 +193,100 @@ width:200px;
 <div id="sidebar" class="sidebar">
 
 <h4>🎓 منصة الطالب</h4>
+<div style="margin-bottom:25px">
 
-<a href="/lessons">📚 مشاهدة الدروس</a>
+<div style="display:flex;align-items:center;gap:10px">
 
-<a href="/quizzes">📝 امتحانات الكويزات</a>
+<div style="
+width:40px;
+height:40px;
+border-radius:50%;
+background:#38bdf8;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:bold;
+">
 
-<a href="/results">📊 نتائج الكويزات</a>
+A
 
-<a href="/leaderboard">🏆 ترتيبي</a>
+</div>
 
-<a href="/subscription">💳 اشتراكي</a>
+<div>
 
-<a href="/profile">👤 البروفايل</a>
+<div style="font-size:14px;font-weight:bold">
+{{ Auth::user()->name ?? 'طالب' }}
+</div>
 
-<a href="https://wa.me/201055669552">💬 تواصل مع الدعم</a>
+<div style="font-size:12px;color:#cbd5f5">
+Level 3
+</div>
 
+</div>
+
+</div>
+
+<div style="
+margin-top:12px;
+background:rgba(255,255,255,0.15);
+height:6px;
+border-radius:6px;
+overflow:hidden;
+">
+
+<div style="
+width:60%;
+height:100%;
+background:#22c55e;
+border-radius:6px;
+">
+
+</div>
+
+</div>
+
+<div style="font-size:11px;margin-top:5px;color:#cbd5f5">
+
+تقدم الدروس 60%
+
+</div>
+
+</div>
+
+<a href="/lessons">
+<i class="fa-solid fa-book-open"></i>
+مشاهدة الدروس
+</a>
+
+<a href="/quizzes">
+<i class="fa-solid fa-file-pen"></i>
+امتحانات الكويزات
+</a>
+
+<a href="/results">
+<i class="fa-solid fa-chart-column"></i>
+نتائج الكويزات
+</a>
+
+<a href="/leaderboard">
+<i class="fa-solid fa-trophy"></i>
+ترتيبي
+</a>
+
+<a href="/subscription">
+<i class="fa-solid fa-credit-card"></i>
+اشتراكي
+</a>
+
+<a href="/profile">
+<i class="fa-solid fa-user"></i>
+البروفايل
+</a>
+
+<a href="https://wa.me/201055669552">
+<i class="fa-solid fa-headset"></i>
+تواصل مع الدعم
+</a>
 
 <form method="POST" action="{{ route('logout') }}" class="logout-btn">
 
@@ -192,15 +315,33 @@ width:200px;
 <script>
 
 function toggleMenu(){
+
 let sidebar = document.getElementById("sidebar")
 
 if(sidebar.style.left === "0px"){
-sidebar.style.left = "-260px"
+sidebar.style.transform = "translateX(-100%)"
 }else{
-sidebar.style.left = "0px"
+sidebar.style.transform = "translateX(0)"
 }
 
 }
+
+/* إغلاق القائمة عند الضغط خارجها */
+
+document.addEventListener("click", function(event){
+
+let sidebar = document.getElementById("sidebar")
+let menuBtn = document.querySelector("button")
+
+if(
+sidebar.style.left === "0px" &&
+!sidebar.contains(event.target) &&
+!menuBtn.contains(event.target)
+){
+sidebar.style.left = "-260px"
+}
+
+})
 
 </script>
 </body>
