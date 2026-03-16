@@ -1,80 +1,111 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+<head>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <body class="font-sans antialiased">
-<div class="mb-4 text-center">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<h5>{{ auth()->user()->name }}</h5>
+<meta name="csrf-token" content="{{ csrf_token() }}">
 
-<small>{{ auth()->user()->email }}</small>
+<title>{{ config('app.name', 'Laravel') }}</title>
 
-</div>
-<div class="d-flex">
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet">
 
-<div class="bg-dark text-white p-3" style="width:250px; min-height:100vh;">
-@if(auth()->user()->role == 'admin')    
-<h4>لوحة التحكم</h4>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<ul class="nav flex-column mt-4">
+@vite(['resources/css/app.css','resources/js/app.js'])
 
-<li class="nav-item">
-<a class="nav-link text-white" href="/dashboard">📊 لوحة التحكم</a>
-</li>
+</head>
 
-<li class="nav-item">
-<a class="nav-link text-white" href="/add-lesson">📚 إضافة درس</a>
-</li>
 
-<li class="nav-item">
-<a class="nav-link text-white" href="/add-quiz">❓ إضافة اختبار</a>
-</li>
+<body class="font-sans antialiased">
 
-<li class="nav-item">
-<a class="nav-link text-white" href="/students">👨‍🎓 إدارة الطلاب</a>
-</li>
+<!-- Navbar -->
 
-<li class="nav-item">
-<a class="nav-link text-white" href="/video-report">👁️ تقرير المشاهدة</a>
-</li>
-<li class="nav-item mt-4">
-<a class="nav-link text-white" href="/profile">
-👤 البروفايل
-</a>
-</li>
+<nav class="navbar navbar-light bg-white shadow-sm px-4">
 
-<li class="nav-item">
+<button onclick="toggleMenu()" class="btn btn-light">
+
+☰
+
+</button>
+
+<span class="fw-bold">منصة الفيزياء</span>
+
+</nav>
+
+
+<!-- القائمة الجانبية -->
+
+<div id="sidebar" style="
+
+position:fixed;
+top:0;
+left:-260px;
+width:250px;
+height:100vh;
+background:#1e293b;
+color:white;
+padding:20px;
+transition:.3s;
+
+">
+
+<h4 class="mb-4">منصة الطالب</h4>
+
+<a href="/lessons" class="d-block text-white mb-3">📚 مشاهدة الدروس</a>
+
+<a href="/quizzes" class="d-block text-white mb-3">📝 امتحانات الكويزات</a>
+
+<a href="/results" class="d-block text-white mb-3">📊 نتائج الكويزات</a>
+
+<a href="/leaderboard" class="d-block text-white mb-3">🏆 ترتيبي</a>
+
+<a href="/subscription" class="d-block text-white mb-3">💳 اشتراكي</a>
+
+<a href="/profile" class="d-block text-white mt-4">👤 البروفايل</a>
+
 <form method="POST" action="{{ route('logout') }}">
 @csrf
-<button class="nav-link text-white" style="background:none;border:none;">
-🚪 تسجيل الخروج
-</button>
+<button class="btn btn-danger w-100 mt-3">تسجيل الخروج</button>
 </form>
-</li>
 
-</ul>
 </div>
-@endif
-<div class="flex-grow-1 p-4">
+
+
+<!-- المحتوى -->
+
+<div class="container">
+
 {{ $slot }}
-</div>
 
 </div>
 
-<div id="popupNotification" class="popup-notification"></div>
+
+<script>
+
+function toggleMenu(){
+
+let menu = document.getElementById("sidebar")
+
+if(menu.style.left === "0px"){
+
+menu.style.left = "-260px"
+
+}else{
+
+menu.style.left = "0px"
+
+}
+
+}
+
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
