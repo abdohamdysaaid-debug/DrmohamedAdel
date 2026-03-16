@@ -53,13 +53,18 @@ z-index:1000;
 
 .sidebar{
 
+position:fixed;
+top:0;
+left:-260px;
 width:250px;
 min-height:100vh;
 background:linear-gradient(180deg,#0f172a,#1e293b);
 color:white;
 padding:25px;
-}
+transition:0.3s;
+z-index:999;
 
+}
 .sidebar h4{
 
 margin-bottom:30px;
@@ -96,7 +101,7 @@ width:200px;
 </style>
 
 
-<div class="sidebar">
+<div id="sidebar" class="sidebar">
 
 <h4>🎓 منصة الطالب</h4>
 
@@ -136,27 +141,6 @@ width:200px;
 {{ $slot }}
 
 </div>
-
-
-<script>
-
-function toggleMenu(){
-
-let menu = document.getElementById("sidebar")
-
-if(menu.style.left === "0px"){
-
-menu.style.left = "-260px"
-
-}else{
-
-menu.style.left = "0px"
-
-}
-
-}
-
-</script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
