@@ -64,9 +64,10 @@ Route::get('/admin', function(){
     return view('admin');
 
 });
-Route::get('/add-student', function () {
-    return view('add-student');
+Route::get('/add-student', function(){
+return view('students.create');
 });
+
 use App\Models\User;
 use Illuminate\Http\Request;
 

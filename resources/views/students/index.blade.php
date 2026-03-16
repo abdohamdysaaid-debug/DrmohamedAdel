@@ -4,6 +4,19 @@
 
 <h2>لوحة إدارة الطلاب</h2>
 
+<a href="/add-student" style="
+background:#22c55e;
+color:white;
+padding:10px 20px;
+border-radius:8px;
+text-decoration:none;
+font-weight:bold;
+margin-bottom:20px;
+display:inline-block;
+">
+➕ إضافة طالب
+</a>
+
 @php
 $students = App\Models\User::where('role','student')->get();
 $total = $students->count();
