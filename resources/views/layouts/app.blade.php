@@ -95,16 +95,22 @@ width:260px;
 min-height:100vh;
 background:linear-gradient(180deg,#1e3a8a,#0f172a);
 color:white;
-padding:25px 20px;
+padding:25px;
 position:fixed;
 top:0;
+left:0;
+
 transform:translateX(-100%);
-transition:0.35s ease;
-backdrop-filter:blur(10px);
-box-shadow:5px 0 25px rgba(0,0,0,0.2);
+transition:transform 0.35s ease;
+
+z-index:999;
 
 }
+.sidebar.open{
 
+transform:translateX(0);
+
+}
 .sidebar h4{
 
 margin-bottom:35px;
@@ -279,31 +285,31 @@ border-radius:6px;
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script>
 
-function toggleMenu(){
-
 let sidebar = document.getElementById("sidebar")
 
-if(sidebar.style.left === "0px"){
-sidebar.style.transform = "translateX(-100%)"
-}else{
-sidebar.style.transform = "translateX(0)"
-}
+function toggleMenu(){
+
+sidebar.classList.toggle("open")
 
 }
+
+/* فتح القائمة */
+
+document.querySelector("button").addEventListener("click",function(e){
+
+e.stopPropagation()
+toggleMenu()
+
+})
 
 /* إغلاق القائمة عند الضغط خارجها */
 
-document.addEventListener("click", function(event){
+document.addEventListener("click",function(e){
 
-let sidebar = document.getElementById("sidebar")
-let menuBtn = document.querySelector("button")
+if(!sidebar.contains(e.target)){
 
-if(
-sidebar.style.left === "0px" &&
-!sidebar.contains(event.target) &&
-!menuBtn.contains(event.target)
-){
-sidebar.style.left = "-260px"
+sidebar.classList.remove("open")
+
 }
 
 })
