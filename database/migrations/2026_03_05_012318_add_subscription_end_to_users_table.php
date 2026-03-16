@@ -9,23 +9,21 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+  public function up()
 {
-Schema::table('users', function (Blueprint $table) {
+Schema::table('users', function ($table) {
 
-    if (!Schema::hasColumn('users', 'subscription_end')) {
-        $table->date('subscription_end')->nullable();
-    }
+$table->date('subscription_end')->nullable();
 
 });
 }
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
-        Schema::table('users', function (Blueprint $table) {
-            //
-        });
-    }
+
+public function down()
+{
+Schema::table('users', function ($table) {
+
+$table->dropColumn('subscription_end');
+
+});
+}
 };

@@ -28,21 +28,31 @@ class AuthenticatedSessionController extends Controller
 
         $request->authenticate();
 
-    } catch (\Illuminate\Validation\ValidationException $e) {
+        } catch (\Illuminate\Validation\ValidationException $e) {
 
         return response()->json([
             'error' => true
         ], 401);
 
-    }
+     }
 
-    $request->session()->regenerate();
+      $request->session()->regenerate();
+     $user = auth()->user();
 
-    if(auth()->user()->is_admin){
+     if($user->role == 'student' && $user->subscription_end < now()){
+
+      Auth::logout();
+  
+      return redirect('/login')->withErrors([
+      'email' => 'انتهى اشتراكك برجاء تجديد الاشتراك'
+       ]);
+
+     }
+     if($user->is_admin){
         return response()->json([
             'redirect' => '/admin'
         ]);
-    }
+     }
 
     return response()->json([
         'redirect' => '/dashboard'

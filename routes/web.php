@@ -149,3 +149,23 @@ Route::post('/update-student/{id}', function(\Illuminate\Http\Request $request,$
 
  Route::post('/students/add', [StudentController::class, 'store'])->name('students.add');
  Route::get('/students', [StudentController::class, 'index'])->name('students.index');
+
+ Route::post('/renew/{id}', function($id){
+
+$user = App\Models\User::find($id);
+
+$user->subscription_end = now()->addMonth();
+
+$user->save();
+
+return redirect('/students');
+
+}); 
+
+Route::post('/students/delete/{id}', function($id){
+
+\App\Models\User::find($id)->delete();
+
+return redirect('/students');
+
+});
