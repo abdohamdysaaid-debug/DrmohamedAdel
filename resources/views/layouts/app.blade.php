@@ -24,11 +24,10 @@
 
 <!-- Navbar -->
 
-<nav class="navbar navbar-light bg-white shadow-sm px-4">
+<nav class="navbar navbar-light bg-white shadow-sm px-4 position-relative">
 
 <button onclick="toggleMenu()" style="
-position:fixed;
-top:15px;
+position:absolute;
 left:15px;
 background:#1e293b;
 color:white;
@@ -42,7 +41,15 @@ z-index:1000;
 ☰
 </button>
 
-<span class="fw-bold">منصة الفيزياء</span>
+<span style="
+position:absolute;
+left:50%;
+transform:translateX(-50%);
+font-weight:bold;
+font-size:20px;
+">
+منصة الفيزياء
+</span>
 
 </nav>
 
@@ -69,6 +76,9 @@ z-index:999;
 
 margin-bottom:30px;
 font-weight:bold;
+text-align:center;
+font-size:20px;
+letter-spacing:1px;
 
 }
 
