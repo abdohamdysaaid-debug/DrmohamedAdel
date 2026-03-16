@@ -29,7 +29,7 @@ min-height:100vh;
 
 <nav class="navbar navbar-light bg-white shadow-sm px-4 position-relative">
 
-<button onclick="toggleMenu()" style="
+<button id="menuBtn" onclick="toggleMenu()" style="
 position:absolute;
 top:25px;
 left:15px;
@@ -286,32 +286,29 @@ border-radius:6px;
 <script>
 
 let sidebar = document.getElementById("sidebar")
+let menuBtn = document.getElementById("menuBtn")
 
 function toggleMenu(){
-
 sidebar.classList.toggle("open")
-
 }
 
-/* فتح القائمة */
+/* منع انتشار الضغط من زر المنيو */
 
-document.querySelector("button").addEventListener("click",function(e){
-
+menuBtn.addEventListener("click",function(e){
 e.stopPropagation()
 toggleMenu()
+})
 
+/* منع إغلاق القائمة عند الضغط داخلها */
+
+sidebar.addEventListener("click",function(e){
+e.stopPropagation()
 })
 
 /* إغلاق القائمة عند الضغط خارجها */
 
-document.addEventListener("click",function(e){
-
-if(!sidebar.contains(e.target)){
-
+document.addEventListener("click",function(){
 sidebar.classList.remove("open")
-
-}
-
 })
 
 </script>
