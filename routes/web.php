@@ -171,3 +171,5 @@ return redirect('/students');
 Route::get('/student-dashboard', function () {
     return view('students.dashboard');
 })->middleware('auth');
+
+Route::get('/student-dashboard',[StudentController::class,'dashboard']);

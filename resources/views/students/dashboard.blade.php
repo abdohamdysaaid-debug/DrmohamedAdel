@@ -70,6 +70,46 @@ max-width:300px
 <a href="/leaderboard" class="card purple">🏆 ترتيبي</a>
 
 <a href="/subscription" class="card red">💳 اشتراكي</a>
+<div class="stat-card">
+📚
+<h3>{{ $watchedLessons }}</h3>
+<p>الدروس المشاهدة</p>
+</div>
+
+<div class="stat-card">
+🏆
+<h3>{{ $rank }}</h3>
+<p>ترتيبك بين الطلاب</p>
+</div>
+
+<div class="stat-card">
+📝
+<h3>{{ $quizCount }}</h3>
+<p>الكويزات التي حللتها</p>
+</div>
+
+<div class="stat-card">
+⭐
+<h3>{{ $points }}</h3>
+<p>نقاطك</p>
+</div>
+
+</div>
+
+
+<h2 style="margin-top:40px">📈 تقدمك في الكورس</h2>
+
+<div class="progress">
+<div class="progress-bar" style="width:{{ $progress }}%"></div>
+</div>
+
+<p>{{ $progress }}% مكتمل</p>
+
+
+<h2 style="margin-top:40px">🔔 الإشعارات</h2>
+
+<div class="notification">
+📢 تم إضافة درس جديد في الفصل الرابع
 
 </div>
 
