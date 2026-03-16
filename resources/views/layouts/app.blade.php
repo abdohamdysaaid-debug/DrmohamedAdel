@@ -42,8 +42,13 @@ z-index:1000;
 ☰
 </button>
 
-<div style="position:absolute;right:20px;cursor:pointer;font-size:22px">
-
+<div style="
+position:absolute;
+right:20px;
+top:25px;
+cursor:pointer;
+font-size:22px;
+">
 🔔
 
 <span style="
@@ -64,13 +69,14 @@ font-size:10px;
 <span style="
 position:absolute;
 left:50%;
+top:22px;
 transform:translateX(-50%);
 font-weight:bold;
-font-size:20px;
+font-size:22px;
+color:#1e293b;
+letter-spacing:1px;
 ">
-
-منصة الفيزياء
-
+⚡ منصة الفيزياء
 </span>
 
 </nav>
@@ -87,7 +93,10 @@ top:0;
 left:-260px;
 width:250px;
 min-height:100vh;
-background:linear-gradient(180deg,#0f172a,#1e293b);
+
+background:linear-gradient(180deg,#1e3a8a,#0f172a);
+backdrop-filter:blur(10px);
+
 color:white;
 padding:25px;
 transition:0.3s;
