@@ -49,6 +49,10 @@ Lesson::create([
 'chapter' => $request->chapter
 
 ]);
+Notification::create([
+'title' => '📚 درس جديد',
+'message' => 'تم إضافة درس جديد على المنصة'
+]);
 
 return redirect('/lessons');
 
@@ -64,10 +68,4 @@ Lesson::create([
     'video_url'=>$request->video_url,
     'chapter'=>$request->chapter,
     'pdf'=>$pdf ?? null
-]);
-use App\Models\Notification;
-
-Notification::create([
-'title'=>'درس جديد',
-'message'=>'تم إضافة درس جديد على المنصة'
 ]);

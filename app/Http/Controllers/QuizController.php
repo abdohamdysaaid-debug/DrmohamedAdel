@@ -6,6 +6,8 @@ use App\Models\Quiz;
 use Illuminate\Http\Request;
 use App\Models\Result;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use App\Models\Notification;
 
 class QuizController extends Controller
 {
@@ -94,6 +96,17 @@ public function submit(Request $request)
         'score'=>$score
     ]);
 
+$students = User::where('role','student')->get();
+
+foreach($students as $student){
+
+Notification::create([
+'user_id'=>$student->id,
+'title'=>'📝 كويز جديد',
+'message'=>'تم إضافة كويز جديد على المنصة'
+]);
+
+}
     return redirect('/leaderboard');
 }
 }

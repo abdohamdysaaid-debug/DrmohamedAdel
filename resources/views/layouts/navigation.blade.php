@@ -4,21 +4,27 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
        <div class="flex justify-between h-16">
 
-           <div class="notification-bell">
+           <div class="notification-wrapper">
 
-             <a href="/notifications">
+<button onclick="toggleNotifications()" class="bell-btn">
+🔔
+<span id="notifCount" class="notif-count">0</span>
+</button>
 
-             🔔
+<div id="notifDropdown" class="notif-dropdown">
 
-             <span class="count">
+<div class="notif-title">
+الإشعارات
+</div>
 
-             {{ \App\Models\Notification::where('is_read',0)->count() }}
+<div id="notifList"></div>
 
-             </span>
+</div>
 
-             </a>
-
-            </div>
+</div>
+<audio id="notifSound">
+<source src="/sounds/notification.mp3" type="audio/mpeg">
+</audio>
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">

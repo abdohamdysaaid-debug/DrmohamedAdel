@@ -74,5 +74,7 @@
 
 </div>
 
+<div id="popupNotification" class="popup-notification"></div>
+
 </body>
 </html>

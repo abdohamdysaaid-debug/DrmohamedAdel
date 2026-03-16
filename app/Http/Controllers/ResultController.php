@@ -38,7 +38,11 @@ return view('teacher-dashboard',compact(
 'views',
 'topStudents'
 ));
-
+Notification::create([
+'user_id'=>$student_id,
+'title'=>'📊 نتيجتك ظهرت',
+'message'=>'تم إعلان نتيجة الكويز الخاص بك'
+]);
 }
 public function videoWatchReport()
 {

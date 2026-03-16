@@ -181,3 +181,22 @@ $notifications=\App\Models\Notification::latest()->get();
 return view('notifications',compact('notifications'));
 
 });
+
+Route::get('/get-notifications',function(){
+
+return \App\Models\Notification::latest()->take(5)->get();
+
+});
+Route::get('/get-notifications',function(){
+
+return \App\Models\Notification
+::where('user_id',auth()->id())
+->where('is_read',0)
+->latest()
+->take(10)
+->get();
+
+});
+use App\Http\Controllers\NotificationController;
+
+Route::get('/send-notification',[NotificationController::class,'sendManual']);
