@@ -1,95 +1,133 @@
 <x-app-layout>
 
-<div class="main-container">
-
-<h1 class="title">🎓 منصة الفيزياء</h1>
-
-<p class="welcome">أهلاً {{ auth()->user()->name }}</p>
-
-
-<div class="cards">
-
-<a href="/lessons" class="card blue">
-📚
-<h3>مشاهدة الدروس</h3>
-</a>
-
-<a href="/quizzes" class="card orange">
-📝
-<h3>امتحانات الكويزات</h3>
-</a>
-
-<a href="/results" class="card green">
-📊
-<h3>نتائج الكويزات</h3>
-</a>
-
-<a href="/leaderboard" class="card purple">
-🏆
-<h3>ترتيبي</h3>
-</a>
-
-<a href="/subscription" class="card red">
-💳
-<h3>اشتراكي</h3>
-</a>
-
-</div>
-
-</div>
-
-
 <style>
 
-.main-container{
-text-align:center;
-margin-top:80px;
+body{
+background:#f4f6fb;
 }
 
-.title{
-font-size:40px;
-font-weight:bold;
+/* منتصف الصفحة */
+
+.center-dashboard{
+display:flex;
+justify-content:center;
+align-items:center;
+height:80vh;
 }
 
-.welcome{
-color:#666;
-margin-bottom:40px;
-}
+/* جريد الأيقونات */
 
-.cards{
+.dashboard-grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+grid-template-columns:repeat(2,230px);
 gap:25px;
-max-width:800px;
-margin:auto;
 }
 
-.card{
-padding:35px;
-border-radius:15px;
-text-decoration:none;
+/* كارت */
+
+.dashboard-card{
+
+padding:30px;
+border-radius:18px;
 color:white;
-font-size:22px;
-font-weight:bold;
-transition:0.3s;
-box-shadow:0 8px 20px rgba(0,0,0,0.2);
-}
-
-.card:hover{
-transform:translateY(-8px);
-}
-
-.blue{background:linear-gradient(135deg,#36d1dc,#5b86e5);}
-.orange{background:linear-gradient(135deg,#f7971e,#ffd200);}
-.green{background:linear-gradient(135deg,#11998e,#38ef7d);}
-.purple{background:linear-gradient(135deg,#a18cd1,#fbc2eb);}
-.red{background:linear-gradient(135deg,#ff416c,#ff4b2b);}
-
-.card h3{
-margin-top:10px;
+text-align:center;
 font-size:18px;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+
+}
+
+.dashboard-card:hover{
+
+transform:translateY(-5px);
+box-shadow:0 15px 35px rgba(0,0,0,0.2);
+
+}
+
+/* الألوان */
+
+.card-blue{
+background:linear-gradient(135deg,#4facfe,#00f2fe);
+}
+
+.card-orange{
+background:linear-gradient(135deg,#f6d365,#fda085);
+}
+
+.card-green{
+background:linear-gradient(135deg,#43e97b,#38f9d7);
+}
+
+.card-purple{
+background:linear-gradient(135deg,#a18cd1,#fbc2eb);
+}
+
+.card-red{
+background:linear-gradient(135deg,#ff6a6a,#ff4757);
+}
+
+.dashboard-icon{
+font-size:40px;
+margin-bottom:10px;
+display:block;
 }
 
 </style>
+
+
+<div class="center-dashboard">
+
+<div class="dashboard-grid">
+
+<a href="/lessons" class="dashboard-card card-blue">
+
+<span class="dashboard-icon">📚</span>
+
+مشاهدة الدروس
+
+</a>
+
+
+<a href="/quizzes" class="dashboard-card card-orange">
+
+<span class="dashboard-icon">📝</span>
+
+امتحانات الكويزات
+
+</a>
+
+
+<a href="/results" class="dashboard-card card-green">
+
+<span class="dashboard-icon">📊</span>
+
+نتائج الكويزات
+
+</a>
+
+
+<a href="/leaderboard" class="dashboard-card card-purple">
+
+<span class="dashboard-icon">🏆</span>
+
+ترتيبي
+
+</a>
+
+
+<a href="/subscription" class="dashboard-card card-red">
+
+<span class="dashboard-icon">💳</span>
+
+اشتراكي
+
+</a>
+
+
+</div>
+
+</div>
 
 </x-app-layout>
