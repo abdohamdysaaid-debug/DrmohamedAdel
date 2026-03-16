@@ -14,6 +14,7 @@
 <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet">
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 @vite(['resources/css/app.css','resources/js/app.js'])
 
@@ -41,6 +42,25 @@ z-index:1000;
 ☰
 </button>
 
+<div style="position:absolute;right:20px;cursor:pointer;font-size:22px">
+
+🔔
+
+<span style="
+position:absolute;
+top:-6px;
+right:-6px;
+background:red;
+color:white;
+border-radius:50%;
+padding:2px 6px;
+font-size:10px;
+">
+5
+</span>
+
+</div>
+
 <span style="
 position:absolute;
 left:50%;
@@ -48,7 +68,9 @@ transform:translateX(-50%);
 font-weight:bold;
 font-size:20px;
 ">
+
 منصة الفيزياء
+
 </span>
 
 </nav>
