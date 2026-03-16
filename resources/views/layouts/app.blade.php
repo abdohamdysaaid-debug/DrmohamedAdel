@@ -26,10 +26,20 @@
 
 <nav class="navbar navbar-light bg-white shadow-sm px-4">
 
-<button onclick="toggleMenu()" class="btn btn-light">
-
+<button onclick="toggleMenu()" style="
+position:fixed;
+top:15px;
+left:15px;
+background:#1e293b;
+color:white;
+border:none;
+padding:10px 14px;
+border-radius:8px;
+font-size:18px;
+cursor:pointer;
+z-index:1000;
+">
 ☰
-
 </button>
 
 <span class="fw-bold">منصة الفيزياء</span>
@@ -102,7 +112,7 @@ width:200px;
 
 <a href="/profile">👤 البروفايل</a>
 
-<a href="https://wa.me/201000000000">💬 تواصل مع الدعم</a>
+<a href="https://wa.me/201055669552">💬 تواصل مع الدعم</a>
 
 
 <form method="POST" action="{{ route('logout') }}" class="logout-btn">
@@ -150,6 +160,19 @@ menu.style.left = "0px"
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
 
+function toggleMenu(){
+let sidebar = document.getElementById("sidebar")
+
+if(sidebar.style.left === "0px"){
+sidebar.style.left = "-260px"
+}else{
+sidebar.style.left = "0px"
+}
+
+}
+
+</script>
 </body>
 </html>

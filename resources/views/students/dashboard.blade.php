@@ -61,38 +61,28 @@ margin-bottom:8px;
 <div class="grid">
 
 <a href="/lessons" class="card blue">
-
 <span class="icon">📚</span>
 مشاهدة الدروس
-
 </a>
 
 <a href="/quizzes" class="card orange">
-
 <span class="icon">📝</span>
 امتحانات الكويزات
-
 </a>
 
 <a href="/results" class="card green">
-
 <span class="icon">📊</span>
 نتائج الكويزات
-
 </a>
 
 <a href="/leaderboard" class="card purple">
-
 <span class="icon">🏆</span>
 ترتيبي
-
 </a>
 
 <a href="/subscription" class="card red">
-
 <span class="icon">💳</span>
 اشتراكي
-
 </a>
 
 </div>
