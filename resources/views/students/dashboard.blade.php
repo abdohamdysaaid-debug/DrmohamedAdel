@@ -3,32 +3,41 @@
 <style>
 
 .dashboard{
+
 display:flex;
 justify-content:center;
 align-items:center;
-height:85vh;
+padding-top:80px;
+
 }
 
 .grid{
+
 display:grid;
-grid-template-columns:repeat(2,250px);
-gap:30px;
+grid-template-columns:1fr;
+gap:20px;
+width:280px;
+
 }
 
 .card{
-padding:35px;
-border-radius:18px;
+
+padding:25px;
+border-radius:15px;
 color:white;
 text-align:center;
-font-size:20px;
+font-size:18px;
 font-weight:bold;
-cursor:pointer;
-transition:.3s;
-box-shadow:0 15px 30px rgba(0,0,0,.2);
+text-decoration:none;
+box-shadow:0 10px 20px rgba(0,0,0,0.2);
+transition:0.3s;
+
 }
 
 .card:hover{
-transform:translateY(-6px);
+
+transform:translateY(-4px);
+
 }
 
 .blue{background:#36d1dc;}
@@ -38,9 +47,11 @@ transform:translateY(-6px);
 .red{background:#ff6a6a;}
 
 .icon{
-font-size:40px;
+
+font-size:32px;
 display:block;
-margin-bottom:10px;
+margin-bottom:8px;
+
 }
 
 </style>
@@ -50,28 +61,38 @@ margin-bottom:10px;
 <div class="grid">
 
 <a href="/lessons" class="card blue">
+
 <span class="icon">📚</span>
 مشاهدة الدروس
+
 </a>
 
 <a href="/quizzes" class="card orange">
+
 <span class="icon">📝</span>
 امتحانات الكويزات
+
 </a>
 
 <a href="/results" class="card green">
+
 <span class="icon">📊</span>
 نتائج الكويزات
+
 </a>
 
 <a href="/leaderboard" class="card purple">
+
 <span class="icon">🏆</span>
 ترتيبي
+
 </a>
 
 <a href="/subscription" class="card red">
+
 <span class="icon">💳</span>
 اشتراكي
+
 </a>
 
 </div>

@@ -39,41 +39,85 @@
 
 <!-- القائمة الجانبية -->
 
-<div id="sidebar" style="
+<style>
 
-position:fixed;
-top:0;
-left:-260px;
+.sidebar{
+
 width:250px;
-height:100vh;
-background:#1e293b;
+min-height:100vh;
+background:linear-gradient(180deg,#0f172a,#1e293b);
 color:white;
-padding:20px;
-transition:.3s;
+padding:25px;
+}
 
-">
+.sidebar h4{
 
-<h4 class="mb-4">منصة الطالب</h4>
+margin-bottom:30px;
+font-weight:bold;
 
-<a href="/lessons" class="d-block text-white mb-3">📚 مشاهدة الدروس</a>
+}
 
-<a href="/quizzes" class="d-block text-white mb-3">📝 امتحانات الكويزات</a>
+.sidebar a{
 
-<a href="/results" class="d-block text-white mb-3">📊 نتائج الكويزات</a>
+display:block;
+padding:12px 15px;
+margin-bottom:8px;
+border-radius:10px;
+color:white;
+text-decoration:none;
+transition:0.3s;
 
-<a href="/leaderboard" class="d-block text-white mb-3">🏆 ترتيبي</a>
+}
 
-<a href="/subscription" class="d-block text-white mb-3">💳 اشتراكي</a>
+.sidebar a:hover{
 
-<a href="/profile" class="d-block text-white mt-4">👤 البروفايل</a>
+background:#334155;
 
-<form method="POST" action="{{ route('logout') }}">
+}
+
+.logout-btn{
+
+position:absolute;
+bottom:30px;
+width:200px;
+
+}
+
+</style>
+
+
+<div class="sidebar">
+
+<h4>🎓 منصة الطالب</h4>
+
+<a href="/lessons">📚 مشاهدة الدروس</a>
+
+<a href="/quizzes">📝 امتحانات الكويزات</a>
+
+<a href="/results">📊 نتائج الكويزات</a>
+
+<a href="/leaderboard">🏆 ترتيبي</a>
+
+<a href="/subscription">💳 اشتراكي</a>
+
+<a href="/profile">👤 البروفايل</a>
+
+<a href="https://wa.me/201000000000">💬 تواصل مع الدعم</a>
+
+
+<form method="POST" action="{{ route('logout') }}" class="logout-btn">
+
 @csrf
-<button class="btn btn-danger w-100 mt-3">تسجيل الخروج</button>
+
+<button class="btn btn-danger w-100">
+
+🚪 تسجيل الخروج
+
+</button>
+
 </form>
 
 </div>
-
 
 <!-- المحتوى -->
 
