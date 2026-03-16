@@ -21,7 +21,10 @@
 </head>
 
 
-<body class="font-sans antialiased">
+<body class="font-sans antialiased" style="
+background:linear-gradient(120deg,#f8fafc,#e2e8f0,#f1f5f9);
+min-height:100vh;
+">
 
 <!-- Navbar -->
 
