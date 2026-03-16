@@ -1,115 +1,38 @@
 <x-app-layout>
 
-<div style="padding:30px">
+<div class="main-container">
 
-<button onclick="toggleMenu()" 
-style="
-font-size:22px;
-background:#3498db;
-color:white;
-border:none;
-padding:10px 15px;
-border-radius:8px;
-cursor:pointer;
-">
-☰
-</button>
+<h1 class="title">🎓 منصة الفيزياء</h1>
+
+<p class="welcome">أهلاً {{ auth()->user()->name }}</p>
 
 
-<div id="studentMenu" style="
-width:250px;
-background:#1e293b;
-color:white;
-position:fixed;
-top:0;
-left:-260px;
-height:100%;
-transition:0.3s;
-padding-top:20px;
-">
+<div class="cards">
 
-<div style="padding:20px;font-size:20px;font-weight:bold;">
-🎓 منصة الطالب
-</div>
-
-<a href="/lessons" class="menu-item">📚 مشاهدة الدروس</a>
-<a href="/quizzes" class="menu-item">📝 الكويزات</a>
-<a href="/results" class="menu-item">📊 النتائج</a>
-<a href="/leaderboard" class="menu-item">🏆 ترتيبي</a>
-<a href="/subscription" class="menu-item">💳 اشتراكي</a>
-
-<hr>
-
-<a href="/profile" class="menu-item">👤 البروفايل</a>
-<a href="/logout" class="menu-item">🚪 تسجيل الخروج</a>
-
-</div>
-
-
-<h1 style="font-size:35px;margin-top:40px">
-منصة الفيزياء
-</h1>
-
-<p>أهلاً {{ auth()->user()->name }}</p>
-
-
-<div style="
-margin-top:40px;
-display:flex;
-flex-direction:column;
-gap:20px;
-max-width:300px
-">
-
-<a href="/lessons" class="card blue">📚 مشاهدة الدروس</a>
-
-<a href="/quizzes" class="card orange">📝 امتحانات الكويزات</a>
-
-<a href="/results" class="card green">📊 نتائج الكويزات</a>
-
-<a href="/leaderboard" class="card purple">🏆 ترتيبي</a>
-
-<a href="/subscription" class="card red">💳 اشتراكي</a>
-<div class="stat-card">
+<a href="/lessons" class="card blue">
 📚
-<h3>{{ $watchedLessons }}</h3>
-<p>الدروس المشاهدة</p>
-</div>
+<h3>مشاهدة الدروس</h3>
+</a>
 
-<div class="stat-card">
-🏆
-<h3>{{ $rank }}</h3>
-<p>ترتيبك بين الطلاب</p>
-</div>
-
-<div class="stat-card">
+<a href="/quizzes" class="card orange">
 📝
-<h3>{{ $quizCount }}</h3>
-<p>الكويزات التي حللتها</p>
-</div>
+<h3>امتحانات الكويزات</h3>
+</a>
 
-<div class="stat-card">
-⭐
-<h3>{{ $points }}</h3>
-<p>نقاطك</p>
-</div>
+<a href="/results" class="card green">
+📊
+<h3>نتائج الكويزات</h3>
+</a>
 
-</div>
+<a href="/leaderboard" class="card purple">
+🏆
+<h3>ترتيبي</h3>
+</a>
 
-
-<h2 style="margin-top:40px">📈 تقدمك في الكورس</h2>
-
-<div class="progress">
-<div class="progress-bar" style="width:{{ $progress }}%"></div>
-</div>
-
-<p>{{ $progress }}% مكتمل</p>
-
-
-<h2 style="margin-top:40px">🔔 الإشعارات</h2>
-
-<div class="notification">
-📢 تم إضافة درس جديد في الفصل الرابع
+<a href="/subscription" class="card red">
+💳
+<h3>اشتراكي</h3>
+</a>
 
 </div>
 
@@ -118,55 +41,55 @@ max-width:300px
 
 <style>
 
-.menu-item{
-display:block;
-padding:12px 20px;
-color:white;
-text-decoration:none;
+.main-container{
+text-align:center;
+margin-top:80px;
 }
 
-.menu-item:hover{
-background:#334155;
+.title{
+font-size:40px;
+font-weight:bold;
+}
+
+.welcome{
+color:#666;
+margin-bottom:40px;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:25px;
+max-width:800px;
+margin:auto;
 }
 
 .card{
-padding:20px;
-border-radius:12px;
-color:white;
+padding:35px;
+border-radius:15px;
 text-decoration:none;
-font-size:18px;
+color:white;
+font-size:22px;
 font-weight:bold;
-text-align:center;
 transition:0.3s;
+box-shadow:0 8px 20px rgba(0,0,0,0.2);
 }
 
 .card:hover{
-transform:scale(1.05);
+transform:translateY(-8px);
 }
 
-.blue{background:#3498db}
-.orange{background:#e67e22}
-.green{background:#2ecc71}
-.purple{background:#9b59b6}
-.red{background:#e74c3c}
+.blue{background:linear-gradient(135deg,#36d1dc,#5b86e5);}
+.orange{background:linear-gradient(135deg,#f7971e,#ffd200);}
+.green{background:linear-gradient(135deg,#11998e,#38ef7d);}
+.purple{background:linear-gradient(135deg,#a18cd1,#fbc2eb);}
+.red{background:linear-gradient(135deg,#ff416c,#ff4b2b);}
+
+.card h3{
+margin-top:10px;
+font-size:18px;
+}
 
 </style>
-
-
-<script>
-
-function toggleMenu(){
-
-let menu = document.getElementById("studentMenu")
-
-if(menu.style.left === "0px"){
-menu.style.left = "-260px"
-}else{
-menu.style.left = "0px"
-}
-
-}
-
-</script>
 
 </x-app-layout>

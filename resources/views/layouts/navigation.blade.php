@@ -1,21 +1,24 @@
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
-     <div style="position:absolute;right:80px;top:20px;font-size:22px;cursor:pointer">
-🔔
-<span style="
-background:red;
-color:white;
-border-radius:50%;
-padding:2px 6px;
-font-size:12px;
-position:absolute;
-top:-8px;
-right:-10px;">
-3
-</span>
-</div>
+
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
+       <div class="flex justify-between h-16">
+
+           <div class="notification-bell">
+
+             <a href="/notifications">
+
+             🔔
+
+             <span class="count">
+
+             {{ \App\Models\Notification::where('is_read',0)->count() }}
+
+             </span>
+
+             </a>
+
+            </div>
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">

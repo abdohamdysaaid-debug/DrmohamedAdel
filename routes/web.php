@@ -173,3 +173,11 @@ Route::get('/student-dashboard', function () {
 })->middleware('auth');
 
 Route::get('/student-dashboard',[StudentController::class,'dashboard']);
+
+Route::get('/notifications',function(){
+
+$notifications=\App\Models\Notification::latest()->get();
+
+return view('notifications',compact('notifications'));
+
+});
