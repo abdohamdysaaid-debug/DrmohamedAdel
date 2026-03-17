@@ -136,18 +136,66 @@ transform:translateX(-6px);
 
 font-size:18px;
 
-}
 
-/* زر تسجيل الخروج */
 
-.logout-btn{
 
+/* الحاوية */
+.sidebar-footer{
 position:absolute;
-bottom:30px;
-width:210px;
-
+bottom:20px;
+width:85%;
 }
 
+/* السوشيال */
+.social-icons{
+display:flex;
+justify-content:center;
+gap:15px;
+margin-bottom:15px;
+}
+
+.social-icons a{
+width:40px;
+height:40px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+background:rgba(255,255,255,0.1);
+color:white;
+font-size:16px;
+transition:0.3s;
+}
+
+/* Hover */
+.social-icons a:hover{
+transform:scale(1.2);
+box-shadow:0 0 15px #38bdf8;
+}
+
+/* زرار تسجيل الخروج */
+.logout-btn{
+width:100%;
+background:linear-gradient(135deg,#ef4444,#dc2626);
+border:none;
+padding:12px;
+border-radius:10px;
+color:white;
+font-weight:bold;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:8px;
+cursor:pointer;
+transition:0.3s;
+}
+
+/* Hover */
+.logout-btn:hover{
+transform:scale(1.05);
+box-shadow:0 0 20px rgba(239,68,68,0.6);
+}
+}
 /* زر المنيو */
 
 .menu-btn{
@@ -466,14 +514,23 @@ border-radius:6px;
 تواصل مع الدعم
 </a>
 
-<form method="POST" action="{{ route('logout') }}" class="logout-btn">
-@csrf
+<div class="sidebar-footer">
 
-<button class="btn btn-danger w-100">
-🚪 تسجيل الخروج
-</button>
+    <!-- Social -->
+    <div class="social-icons">
+        <a href="#" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+        <a href="#" target="_blank"><i class="fa-brands fa-telegram"></i></a>
+    </div>
 
-</form>
+    <!-- Logout -->
+    <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <button class="logout-btn">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            تسجيل الخروج
+        </button>
+    </form>
 
 </div>
 
