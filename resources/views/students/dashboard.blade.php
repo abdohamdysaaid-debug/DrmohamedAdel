@@ -84,109 +84,121 @@ right:-100px;
 display:flex;
 justify-content:center;
 align-items:center;
-
-padding-top:80px;
+padding-top:120px;
 
 }
-
-/* شبكة الكروت */
 
 .grid{
 
 display:grid;
-
-grid-template-columns:
-repeat(auto-fit,minmax(220px,1fr));
-
+grid-template-columns:1fr 1fr;
 gap:25px;
-
 width:90%;
-max-width:700px;
+max-width:500px;
 
 }
 
-/* الكروت */
+/* الكارت */
 
 .card{
 
-padding:30px;
-
+padding:25px;
 border-radius:20px;
 
 color:white;
-
 text-align:center;
 
-font-size:18px;
+font-size:16px;
 font-weight:bold;
 
 text-decoration:none;
 
+/* Glass Effect */
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(12px);
+
+border:1px solid rgba(255,255,255,0.1);
+
 box-shadow:
-0 15px 35px rgba(0,0,0,.35);
+0 0 20px rgba(0,0,0,0.4),
+inset 0 0 10px rgba(255,255,255,0.05);
 
-transition:.35s;
+transition:0.3s;
 
-backdrop-filter:blur(10px);
+position:relative;
+overflow:hidden;
 
 }
 
-/* حركة الكروت */
+/* Glow خط خفيف */
+
+.card::before{
+
+content:"";
+position:absolute;
+top:0;
+left:-100%;
+width:100%;
+height:100%;
+
+background:linear-gradient(120deg,transparent,rgba(255,255,255,0.2),transparent);
+
+transition:0.5s;
+
+}
+
+.card:hover::before{
+
+left:100%;
+
+}
+
+/* Hover */
 
 .card:hover{
 
 transform:translateY(-8px) scale(1.03);
 
 box-shadow:
-0 20px 45px rgba(0,0,0,.45);
+0 10px 40px rgba(0,0,0,0.6),
+0 0 25px rgba(56,189,248,0.3);
 
 }
 
-/* الألوان */
+/* ألوان مخصصة لكل كارت */
 
 .blue{
-background:linear-gradient(135deg,#0ea5e9,#22d3ee);
+border-left:4px solid #38bdf8;
 }
 
 .orange{
-background:linear-gradient(135deg,#fb923c,#f59e0b);
+border-left:4px solid #f59e0b;
 }
 
 .green{
-background:linear-gradient(135deg,#22c55e,#4ade80);
+border-left:4px solid #22c55e;
 }
 
 .purple{
-background:linear-gradient(135deg,#8b5cf6,#6366f1);
+border-left:4px solid #a78bfa;
 }
 
 .red{
-background:linear-gradient(135deg,#ef4444,#f87171);
+border-left:4px solid #f87171;
 }
 
-/* الأيقونات */
+/* الأيقونة */
 
 .icon{
 
-font-size:34px;
-margin-bottom:12px;
+font-size:28px;
+margin-bottom:10px;
+display:block;
+
+filter:drop-shadow(0 0 8px rgba(255,255,255,0.3));
 
 }
 
-/* الموبايل */
-
-@media(max-width:600px){
-
-.grid{
-grid-template-columns:1fr;
-}
-
-.card{
-font-size:16px;
-padding:24px;
-}
-
-}
 
 </style>
 
