@@ -257,31 +257,19 @@ to{opacity:1; transform:translateY(0);}
 }
 /* اسم المنصة */
 
-.logo-title{
-
+.logo{
 position:absolute;
+top:20px;
 left:50%;
-top:18px;
+
 transform:translateX(-50%);
-
-display:flex;
-align-items:center;
-gap:8px;
-
+font-size:26px;
 font-weight:bold;
-font-size:22px;
-
-}
-
-/* الأيقونة */
-
-.logo-title .icon{
-
-color:#facc15;
-font-size:22px;
-
-animation: glow 2s infinite alternate;
-
+background:linear-gradient(90deg,#38bdf8,#22c55e);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+text-shadow:0 0 15px rgba(56,189,248,0.6);
+letter-spacing:1px;
 }
 
 /* النص */
@@ -354,12 +342,9 @@ opacity:1;
 
 </div>
 
-<div class="logo-title">
-
-<span class="icon">⚡</span>
-
-<span class="text">
-منصة الفيزياء
+<div class="logo">
+    ⚡ منصة الفيزياء
+</div>
 </span>
 
 </div>
