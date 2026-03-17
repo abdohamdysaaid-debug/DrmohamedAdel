@@ -2,50 +2,78 @@
 
 <style>
 
-/* الخلفية */
+/* خلفية الفيزياء */
 
 body{
+
 background:
-linear-gradient(rgba(15,23,42,0.85),rgba(15,23,42,0.85)),
-url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb');
+linear-gradient(rgba(2,6,23,.85),rgba(2,6,23,.85)),
+url("https://images.unsplash.com/photo-1635070041078-e363dbe005cb");
 
 background-size:cover;
 background-position:center;
 background-attachment:fixed;
+
 overflow-x:hidden;
+
+}
+
+/* الجزيئات */
+
+#particles-js{
+
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-2;
+
 }
 
 /* دوائر الإضاءة */
 
 .bg-circle{
+
 position:fixed;
 border-radius:50%;
-filter:blur(120px);
-opacity:0.4;
+filter:blur(140px);
+opacity:.35;
 z-index:-1;
+
 animation:move 12s infinite alternate;
+
 }
 
 .circle1{
-width:400px;
-height:400px;
-background:#60a5fa;
-top:-100px;
-left:-100px;
+
+width:420px;
+height:420px;
+
+background:#38bdf8;
+
+top:-120px;
+left:-120px;
+
 }
 
 .circle2{
-width:350px;
-height:350px;
-background:#a78bfa;
-bottom:-120px;
+
+width:360px;
+height:360px;
+
+background:#6366f1;
+
+bottom:-150px;
 right:-100px;
+
 }
 
 @keyframes move{
 
-0%{transform:translateY(0px);}
-100%{transform:translateY(40px);}
+0%{transform:translateY(0px)}
+
+100%{transform:translateY(40px)}
 
 }
 
@@ -56,6 +84,7 @@ right:-100px;
 display:flex;
 justify-content:center;
 align-items:center;
+
 padding-top:80px;
 
 }
@@ -65,8 +94,12 @@ padding-top:80px;
 .grid{
 
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+grid-template-columns:
+repeat(auto-fit,minmax(220px,1fr));
+
 gap:25px;
+
 width:90%;
 max-width:700px;
 
@@ -76,15 +109,25 @@ max-width:700px;
 
 .card{
 
-padding:28px;
-border-radius:18px;
+padding:30px;
+
+border-radius:20px;
+
 color:white;
+
 text-align:center;
+
 font-size:18px;
 font-weight:bold;
+
 text-decoration:none;
-box-shadow:0 10px 25px rgba(0,0,0,0.15);
-transition:0.3s;
+
+box-shadow:
+0 15px 35px rgba(0,0,0,.35);
+
+transition:.35s;
+
+backdrop-filter:blur(10px);
 
 }
 
@@ -92,25 +135,41 @@ transition:0.3s;
 
 .card:hover{
 
-transform:translateY(-6px) scale(1.02);
+transform:translateY(-8px) scale(1.03);
+
+box-shadow:
+0 20px 45px rgba(0,0,0,.45);
 
 }
 
 /* الألوان */
 
-.blue{background:linear-gradient(135deg,#22d3ee,#0ea5e9);}
-.orange{background:linear-gradient(135deg,#fde68a,#f59e0b);}
-.green{background:linear-gradient(135deg,#4ade80,#22c55e);}
-.purple{background:linear-gradient(135deg,#c4b5fd,#8b5cf6);}
-.red{background:linear-gradient(135deg,#fca5a5,#ef4444);}
+.blue{
+background:linear-gradient(135deg,#0ea5e9,#22d3ee);
+}
+
+.orange{
+background:linear-gradient(135deg,#fb923c,#f59e0b);
+}
+
+.green{
+background:linear-gradient(135deg,#22c55e,#4ade80);
+}
+
+.purple{
+background:linear-gradient(135deg,#8b5cf6,#6366f1);
+}
+
+.red{
+background:linear-gradient(135deg,#ef4444,#f87171);
+}
 
 /* الأيقونات */
 
 .icon{
 
 font-size:34px;
-display:block;
-margin-bottom:10px;
+margin-bottom:12px;
 
 }
 
@@ -119,16 +178,12 @@ margin-bottom:10px;
 @media(max-width:600px){
 
 .grid{
-
 grid-template-columns:1fr;
-
 }
 
 .card{
-
 font-size:16px;
 padding:24px;
-
 }
 
 }
@@ -136,7 +191,11 @@ padding:24px;
 </style>
 
 
-<!-- دوائر الخلفية -->
+<!-- الجزيئات -->
+
+<div id="particles-js"></div>
+
+<!-- دوائر الإضاءة -->
 
 <div class="bg-circle circle1"></div>
 <div class="bg-circle circle2"></div>
@@ -148,7 +207,7 @@ padding:24px;
 
 <a href="/lessons" class="card blue">
 
-<span class="icon">📚</span>
+<i class="fa-solid fa-book-open icon"></i>
 
 مشاهدة الدروس
 
@@ -157,7 +216,7 @@ padding:24px;
 
 <a href="/quizzes" class="card orange">
 
-<span class="icon">📝</span>
+<i class="fa-solid fa-file-pen icon"></i>
 
 امتحانات الكويزات
 
@@ -166,7 +225,7 @@ padding:24px;
 
 <a href="/results" class="card green">
 
-<span class="icon">📊</span>
+<i class="fa-solid fa-chart-line icon"></i>
 
 نتائج الكويزات
 
@@ -175,5 +234,87 @@ padding:24px;
 </div>
 
 </div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+<script>
+
+particlesJS("particles-js", {
+
+particles:{
+
+number:{
+value:80,
+density:{enable:true,value_area:800}
+},
+
+color:{value:"#38bdf8"},
+
+shape:{type:"circle"},
+
+opacity:{
+value:.5,
+random:true
+},
+
+size:{
+value:3,
+random:true
+},
+
+line_linked:{
+enable:true,
+distance:150,
+color:"#38bdf8",
+opacity:.25,
+width:1
+},
+
+move:{
+enable:true,
+speed:1.5,
+direction:"none",
+out_mode:"out"
+}
+
+},
+
+interactivity:{
+
+events:{
+
+onhover:{
+enable:true,
+mode:"grab"
+},
+
+onclick:{
+enable:true,
+mode:"push"
+}
+
+},
+
+modes:{
+
+grab:{
+distance:140,
+line_linked:{opacity:.7}
+},
+
+push:{particles_nb:4}
+
+}
+
+},
+
+retina_detect:true
+
+})
+
+</script>
+
 
 </x-app-layout>
