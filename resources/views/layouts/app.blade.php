@@ -514,23 +514,14 @@ border-radius:6px;
 تواصل مع الدعم
 </a>
 
-<div class="sidebar-footer">
+<form method="POST" action="{{ route('logout') }}" class="logout-btn">
+@csrf
 
-    <!-- Social -->
-    <div class="social-icons">
-        <a href="#" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
-        <a href="#" target="_blank"><i class="fa-brands fa-youtube"></i></a>
-        <a href="#" target="_blank"><i class="fa-brands fa-telegram"></i></a>
-    </div>
+<button class="btn btn-danger w-100">
+🚪 تسجيل الخروج
+</button>
 
-    <!-- Logout -->
-    <form method="POST" action="{{ route('logout') }}">
-        @csrf
-        <button class="logout-btn">
-            <i class="fa-solid fa-right-from-bracket"></i>
-            تسجيل الخروج
-        </button>
-    </form>
+</form>
 
 </div>
 
