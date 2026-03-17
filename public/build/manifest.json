@@ -1,21 +1,17 @@
 {
-  "name": "منصة الفيزياء - دكتور محمد عادل",
-  "short_name": "Physics",
-  "start_url": "/student-dashboard",
-  "display": "standalone",
-  "background_color": "#0f172a",
-  "theme_color": "#38bdf8",
-  "orientation": "portrait",
-  "icons": [
-    {
-      "src": "/icon.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "/icon.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ]
+  "resources/css/app.css": {
+    "file": "assets/app-BnR6Xcu7.css",
+    "src": "resources/css/app.css",
+    "isEntry": true,
+    "name": "app",
+    "names": [
+      "app.css"
+    ]
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-Y-YDePWe.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true
+  }
 }
