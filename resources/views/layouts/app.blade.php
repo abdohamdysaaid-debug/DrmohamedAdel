@@ -767,5 +767,27 @@ setTimeout(typeWriter, speed)
 window.onload = typeWriter
 
 </script>
+
+<script>
+
+// تشغيل الصوت
+function playClick(){
+let sound = document.getElementById("clickSound")
+sound.currentTime = 0
+sound.play()
+}
+
+/* الأيقونات */
+document.querySelectorAll(".social").forEach(btn=>{
+btn.addEventListener("click", playClick)
+})
+
+/* زرار تسجيل الخروج */
+document.querySelector(".logout-btn").addEventListener("click", playClick)
+
+</script>
+<audio id="clickSound">
+    <source src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3">
+</audio>
 </body>
 </html>
