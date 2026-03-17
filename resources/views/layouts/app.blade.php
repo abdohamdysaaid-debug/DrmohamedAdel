@@ -182,32 +182,79 @@ transform:scale(1.1);
 
 /* الجرس */
 
-.notification{
-
+.notify-wrapper{
 position:absolute;
 right:20px;
 top:25px;
-font-size:22px;
-cursor:pointer;
-
+z-index:2000;
 }
 
-.badge-notify{
+.notify-icon{
+font-size:22px;
+color:#38bdf8;
+cursor:pointer;
+position:relative;
+}
 
+.notify-icon i{
+animation:glow 1.5s infinite alternate;
+}
+
+.notify-count{
 position:absolute;
 top:-6px;
 right:-6px;
-
 background:red;
 color:white;
-
 border-radius:50%;
-padding:2px 6px;
-
-font-size:10px;
-
+padding:3px 7px;
+font-size:11px;
 }
 
+.notify-dropdown{
+position:absolute;
+top:35px;
+right:0;
+width:300px;
+background:#0f172a;
+color:white;
+border-radius:12px;
+box-shadow:0 10px 30px rgba(0,0,0,0.4);
+display:none;
+overflow:hidden;
+}
+
+.notify-dropdown.active{
+display:block;
+animation:fadeIn 0.3s ease;
+}
+
+.notify-header{
+padding:12px;
+font-weight:bold;
+border-bottom:1px solid rgba(255,255,255,0.1);
+}
+
+.notify-item{
+padding:10px;
+border-bottom:1px solid rgba(255,255,255,0.05);
+cursor:pointer;
+transition:0.2s;
+}
+
+.notify-item:hover{
+background:rgba(255,255,255,0.1);
+}
+
+@keyframes glow{
+0%{text-shadow:0 0 5px #38bdf8;}
+100%{text-shadow:0 0 20px #38bdf8;}
+}
+
+@keyframes fadeIn{
+from{opacity:0; transform:translateY(-10px);}
+to{opacity:1; transform:translateY(0);}
+}
 /* اسم المنصة */
 
 .logo-title{
@@ -283,12 +330,26 @@ opacity:1;
 ☰
 </button>
 
-<div class="notification">
+<div class="notify-wrapper">
 
-🔔
+    <div class="notify-icon" onclick="toggleNotifications()">
+        <i class="fa-solid fa-bolt"></i>
+        <span class="notify-count" id="notifyCount">0</span>
+    </div>
 
-<span class="badge-notify">
-5
+    <!-- Dropdown -->
+    <div class="notify-dropdown" id="notifyDropdown">
+        <div class="notify-header">الإشعارات</div>
+        <div id="notifyList"></div>
+    </div>
+
+</div>
+
+<!-- صوت -->
+<audio id="notifySound">
+    <source src="https://notificationsounds.com/storage/sounds/file-sounds-1150-pristine.mp3">
+</audio>
+
 </span>
 
 </div>
@@ -466,6 +527,115 @@ closeMenu()
 })
 
 </script>
+<script>
 
+let dropdown = document.getElementById("notifyDropdown")
+let list = document.getElementById("notifyList")
+let count = document.getElementById("notifyCount")
+let sound = document.getElementById("notifySound")
+
+let notifications = []
+
+function toggleNotifications(){
+dropdown.classList.toggle("active")
+}
+
+/* إضافة إشعار */
+function addNotification(title, message){
+
+let notif = {
+title: title,
+message: message
+}
+
+notifications.unshift(notif)
+
+renderNotifications()
+
+/* صوت */
+sound.play()
+
+/* اهتزاز */
+let icon = document.querySelector(".notify-icon")
+icon.style.transform = "rotate(15deg)"
+setTimeout(()=> icon.style.transform="rotate(0)",300)
+
+/* Popup */
+showPopup(title, message)
+
+}
+
+/* عرض */
+function renderNotifications(){
+
+list.innerHTML = ""
+
+notifications.forEach(n=>{
+list.innerHTML += `
+<div class="notify-item">
+<strong>${n.title}</strong><br>
+<small>${n.message}</small>
+</div>
+`
+})
+
+count.innerText = notifications.length
+
+}
+
+/* Popup */
+function showPopup(title, message){
+
+let popup = document.createElement("div")
+
+popup.style = `
+position:fixed;
+top:20px;
+right:20px;
+background:#1e293b;
+color:white;
+padding:15px;
+border-radius:10px;
+box-shadow:0 0 20px rgba(0,0,0,0.5);
+z-index:3000;
+animation:fadeIn 0.3s;
+`
+
+popup.innerHTML = `<strong>${title}</strong><br>${message}`
+
+document.body.appendChild(popup)
+
+setTimeout(()=> popup.remove(),4000)
+
+}
+
+/* تجربة */
+setTimeout(()=>{
+addNotification("🔥 كويز جديد","تم إضافة كويز جديد لك")
+},3000)
+
+</script>
+
+<script>
+
+setInterval(()=>{
+fetch('/get-notifications')
+.then(res=>res.json())
+.then(data=>{
+
+if(data.length != notifications.length){
+
+notifications = data
+renderNotifications()
+
+sound.play()
+showPopup("إشعار جديد","عندك إشعار جديد 🔥")
+
+}
+
+})
+},5000)
+
+</script>
 </body>
 </html>
