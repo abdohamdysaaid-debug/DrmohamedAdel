@@ -262,7 +262,7 @@ position:absolute;
 top:20px;
 left:50%;
 transform:translateX(-50%);
-font-size:15px;
+font-size:10px;
 font-weight:bold;
 letter-spacing:1px;
 
