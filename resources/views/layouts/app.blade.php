@@ -15,7 +15,8 @@
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#38bdf8">
 @vite(['resources/css/app.css','resources/js/app.js'])
 
 <style>
@@ -392,6 +393,26 @@ opacity:1;
 }
 
 }
+
+
+<button id="installBtn" style="{
+display:none;
+position:absolute;
+right:70px;
+top:20px;
+background:#38bdf8;
+color:white;
+border:none;
+padding:6px 10px;
+border-radius:8px;
+font-size:12px;
+cursor:pointer;
+z-index:1000;
+">
+📲 تثبيت
+</button>
+}
+
 </style>
 
 </head>
@@ -789,5 +810,26 @@ document.querySelector(".logout-btn").addEventListener("click", playClick)
 <audio id="clickSound">
     <source src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3">
 </audio>
+
+<script>
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
+}
+</script>
+
+<script>
+let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+e.preventDefault();
+deferredPrompt = e;
+document.getElementById('installBtn').style.display = 'block';
+});
+
+document.getElementById('installBtn').addEventListener('click', () => {
+deferredPrompt.prompt();
+});
+</script>
+
 </body>
 </html>
