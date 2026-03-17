@@ -395,9 +395,18 @@ opacity:1;
 }
 
 
-<button id="installBtn" style="{
+
+
+</style>
+
+</head>
+
+
+<body>
+
+<button id="installBtn" style="
 display:none;
-position:absolute;
+position:fixed;
 right:70px;
 top:20px;
 background:#38bdf8;
@@ -411,14 +420,7 @@ z-index:1000;
 ">
 📲 تثبيت
 </button>
-}
 
-</style>
-
-</head>
-
-
-<body>
 
 <div id="overlay" class="overlay"></div>
 
