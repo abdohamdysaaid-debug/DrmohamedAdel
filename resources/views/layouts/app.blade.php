@@ -332,7 +332,7 @@ opacity:1;
 
 <div class="notify-wrapper">
 
-    <div class="notify-icon" onclick="toggleNotifications()">
+    <div class="notify-icon" onclick="toggleNotifications(event)">
         <i class="fa-solid fa-bolt"></i>
         <span class="notify-count" id="notifyCount">0</span>
     </div>
@@ -536,7 +536,8 @@ let sound = document.getElementById("notifySound")
 
 let notifications = []
 
-function toggleNotifications(){
+function toggleNotifications(e){
+e.stopPropagation() // يمنع الإغلاق مباشرة
 dropdown.classList.toggle("active")
 }
 
@@ -635,6 +636,22 @@ showPopup("إشعار جديد","عندك إشعار جديد 🔥")
 
 })
 },5000)
+
+</script>
+<script>
+
+// إغلاق الإشعارات عند الضغط خارجها
+document.addEventListener("click", function(e){
+
+let dropdown = document.getElementById("notifyDropdown")
+let icon = document.querySelector(".notify-icon")
+
+// لو الضغط مش على الأيقونة ولا داخل الدروب داون
+if(!dropdown.contains(e.target) && !icon.contains(e.target)){
+dropdown.classList.remove("active")
+}
+
+})
 
 </script>
 </body>
