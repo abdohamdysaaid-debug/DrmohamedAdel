@@ -261,15 +261,31 @@ to{opacity:1; transform:translateY(0);}
 position:absolute;
 top:20px;
 left:50%;
-
 transform:translateX(-50%);
 font-size:26px;
 font-weight:bold;
+letter-spacing:1px;
+
+/* Gradient */
 background:linear-gradient(90deg,#38bdf8,#22c55e);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
+
+/* Glow */
 text-shadow:0 0 15px rgba(56,189,248,0.6);
-letter-spacing:1px;
+}
+
+/* Cursor زي الكتابة */
+#typingText::after{
+content:"|";
+margin-left:5px;
+animation:blink 1s infinite;
+}
+
+@keyframes blink{
+0%{opacity:1;}
+50%{opacity:0;}
+100%{opacity:1;}
 }
 
 /* النص */
@@ -343,7 +359,7 @@ opacity:1;
 </div>
 
 <div class="logo">
-    ⚡ منصة الفيزياء
+    <span id="typingText"></span>
 </div>
 </span>
 
@@ -637,6 +653,24 @@ dropdown.classList.remove("active")
 }
 
 })
+
+</script>
+
+<script>
+
+let text = "⚡ مرحبا بكم في منصة الدكتور محمد عادل⚡"
+let index = 0
+let speed = 80
+
+function typeWriter(){
+if(index < text.length){
+document.getElementById("typingText").innerHTML += text.charAt(index)
+index++
+setTimeout(typeWriter, speed)
+}
+}
+
+window.onload = typeWriter
 
 </script>
 </body>
