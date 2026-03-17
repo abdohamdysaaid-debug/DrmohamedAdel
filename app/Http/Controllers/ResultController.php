@@ -4,55 +4,44 @@ namespace App\Http\Controllers;
 
 use App\Models\Result;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Notification;
+use Minishlink\WebPush\WebPush;
 
 class ResultController extends Controller
 {
+    public function leaderboard()
+    {
+        $results = Result::with('user')
+            ->orderBy('score', 'desc')
+            ->get();
 
-public function leaderboard()
-{
-$results = \App\Models\Result::with('user')
-->orderBy('score','desc')
-->get();
+        return view('leaderboard', compact('results'));
+    }
 
-return view('leaderboard',compact('results'));
-}
-public function teacherDashboard()
-{
+    public function submitResultNotification($user_id)
+    {
+        $user = User::find($user_id);
 
-$students = \App\Models\User::where('role','student')->count();
+        // إشعار داخل المنصة
+        Notification::create([
+            'user_id' => $user->id,
+            'title' => '📊 نتيجتك ظهرت',
+            'message' => 'تم إعلان نتيجتك في الكويز'
+        ]);
 
-$lessons = \App\Models\Lesson::count();
+        // Push Notification
+        if ($user->push_subscription) {
 
-$quizzes = \App\Models\Quiz::count();
+            $webPush = new WebPush();
 
-$views = \App\Models\VideoView::count();
-
-$topStudents = \App\Models\User::orderBy('rating','desc')
-->take(5)
-->get();
-
-return view('teacher-dashboard',compact(
-'students',
-'lessons',
-'quizzes',
-'views',
-'topStudents'
-));
-Notification::create([
-'user_id'=>$student_id,
-'title'=>'📊 نتيجتك ظهرت',
-'message'=>'تم إعلان نتيجة الكويز الخاص بك'
-]);
-}
-public function videoWatchReport()
-{
-
-$students = \App\Models\User::where('role','student')->get();
-
-$lessons = \App\Models\Lesson::all();
-
-return view('video-report',compact('students','lessons'));
-
-}
-
+            $webPush->sendNotification(
+                $user->push_subscription,
+                json_encode([
+                    'title' => '📊 نتيجتك ظهرت',
+                    'body' => 'تم إعلان نتيجتك في الكويز'
+                ])
+            );
+        }
+    }
 }

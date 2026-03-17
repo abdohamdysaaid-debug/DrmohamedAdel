@@ -15,7 +15,7 @@
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link rel="manifest" href="/manifest.json">
+<link rel="manifest" href="/build/manifest.json">
 <meta name="theme-color" content="#38bdf8">
 @vite(['resources/css/app.css','resources/js/app.js'])
 
@@ -831,6 +831,26 @@ document.getElementById('installBtn').style.display = 'block';
 document.getElementById('installBtn').addEventListener('click', () => {
 deferredPrompt.prompt();
 });
+</script>
+<script>
+async function subscribeUser() {
+  const registration = await navigator.serviceWorker.register('/sw.js');
+
+  const subscription = await registration.pushManager.subscribe({
+    userVisibleOnly: true,
+    applicationServerKey: 'PUT_YOUR_PUBLIC_KEY_HERE'
+  });
+
+  await fetch('/subscribe', {
+    method: 'POST',
+    body: JSON.stringify(subscription),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+}
+
+subscribeUser();
 </script>
 
 </body>

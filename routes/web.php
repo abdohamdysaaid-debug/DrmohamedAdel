@@ -200,3 +200,27 @@ return \App\Models\Notification
 use App\Http\Controllers\NotificationController;
 
 Route::get('/send-notification',[NotificationController::class,'sendManual']);
+Route::post('/subscribe', function (Request $request) {
+    auth()->user()->update([
+        'push_subscription' => $request->all()
+    ]);
+});
+Route::get('/send-test', function () {
+
+    $users = \App\Models\User::all();
+    $webPush = new \Minishlink\WebPush\WebPush();
+
+    foreach ($users as $user) {
+        if ($user->push_subscription) {
+            $webPush->sendNotification(
+                $user->push_subscription,
+                json_encode([
+                    'title' => '🔥 إشعار تجريبي',
+                    'body' => 'الإشعارات شغالة تمام'
+                ])
+            );
+        }
+    }
+
+    return "تم الإرسال";
+});
