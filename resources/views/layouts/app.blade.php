@@ -139,33 +139,36 @@ font-size:18px;
 
 
 
-/* الحاوية */
+/* ===== مكانهم في أسفل القائمة ===== */
 .sidebar-footer{
 position:absolute;
-bottom:20px;
-width:85%;
+bottom:80px; /* = حوالي 2cm */
+left:50%;
+transform:translateX(-50%);
+width:80%;
+text-align:center;
 }
 
-/* السوشيال */
+/* ===== أيقونات السوشيال ===== */
 .social-icons{
 display:flex;
 justify-content:center;
 gap:15px;
-margin-bottom:15px;
+margin-bottom:12px;
 }
 
-/* الأيقونة */
+/* شكل الأيقونة */
 .social{
 position:relative;
-width:40px;
-height:40px;
+width:42px;
+height:42px;
 display:flex;
 align-items:center;
 justify-content:center;
 border-radius:50%;
-background:rgba(255,255,255,0.1);
+background:rgba(255,255,255,0.08);
 color:white;
-font-size:16px;
+font-size:18px;
 transition:0.3s;
 }
 
@@ -190,23 +193,20 @@ padding:4px 8px;
 border-radius:6px;
 font-size:12px;
 opacity:0;
-pointer-events:none;
 transition:0.3s;
-white-space:nowrap;
 }
 
 .social:hover::after{
 opacity:1;
-transform:translateY(-5px);
 }
 
-/* زرار الخروج */
+/* ===== زرار تسجيل الخروج ===== */
 .logout-btn{
 width:100%;
 background:linear-gradient(135deg,#ef4444,#dc2626);
 border:none;
 padding:12px;
-border-radius:10px;
+border-radius:12px;
 color:white;
 font-weight:bold;
 display:flex;
@@ -217,6 +217,7 @@ cursor:pointer;
 transition:0.3s;
 }
 
+/* Hover */
 .logout-btn:hover{
 transform:scale(1.05);
 box-shadow:0 0 20px rgba(239,68,68,0.6);
@@ -542,9 +543,8 @@ border-radius:6px;
 
 <div class="sidebar-footer">
 
-    <!-- Social -->
+    <!-- Social Icons -->
     <div class="social-icons">
-
         <a href="https://facebook.com/YOUR_PAGE" target="_blank" class="social" data-name="Facebook">
             <i class="fa-brands fa-facebook-f"></i>
         </a>
@@ -556,7 +556,6 @@ border-radius:6px;
         <a href="https://t.me/YOUR_GROUP" target="_blank" class="social" data-name="Telegram">
             <i class="fa-brands fa-telegram"></i>
         </a>
-
     </div>
 
     <!-- Logout -->
