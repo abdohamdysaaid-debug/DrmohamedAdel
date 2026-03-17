@@ -245,7 +245,7 @@ filter:drop-shadow(0 0 8px rgba(255,255,255,0.3));
 
 <a href="/results" class="card green">
 
-<i class="fa-solid fa-chart-line icon"></i>
+<i class="fa-solid fa-book icon"></i>
 
 مذكراتك
 
