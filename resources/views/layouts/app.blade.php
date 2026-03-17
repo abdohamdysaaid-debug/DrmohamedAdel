@@ -154,7 +154,9 @@ gap:15px;
 margin-bottom:15px;
 }
 
-.social-icons a{
+/* الأيقونة */
+.social{
+position:relative;
 width:40px;
 height:40px;
 display:flex;
@@ -168,12 +170,37 @@ transition:0.3s;
 }
 
 /* Hover */
-.social-icons a:hover{
+.social:hover{
 transform:scale(1.2);
-box-shadow:0 0 15px #38bdf8;
 }
 
-/* زرار تسجيل الخروج */
+/* ألوان */
+.social:nth-child(1):hover{ box-shadow:0 0 15px #1877f2; }
+.social:nth-child(2):hover{ box-shadow:0 0 15px #ff0000; }
+.social:nth-child(3):hover{ box-shadow:0 0 15px #0088cc; }
+
+/* Tooltip */
+.social::after{
+content:attr(data-name);
+position:absolute;
+bottom:55px;
+background:#0f172a;
+color:white;
+padding:4px 8px;
+border-radius:6px;
+font-size:12px;
+opacity:0;
+pointer-events:none;
+transition:0.3s;
+white-space:nowrap;
+}
+
+.social:hover::after{
+opacity:1;
+transform:translateY(-5px);
+}
+
+/* زرار الخروج */
 .logout-btn{
 width:100%;
 background:linear-gradient(135deg,#ef4444,#dc2626);
@@ -190,7 +217,6 @@ cursor:pointer;
 transition:0.3s;
 }
 
-/* Hover */
 .logout-btn:hover{
 transform:scale(1.05);
 box-shadow:0 0 20px rgba(239,68,68,0.6);
@@ -514,14 +540,35 @@ border-radius:6px;
 تواصل مع الدعم
 </a>
 
-<form method="POST" action="{{ route('logout') }}" class="logout-btn">
-@csrf
+<div class="sidebar-footer">
 
-<button class="btn btn-danger w-100">
-🚪 تسجيل الخروج
-</button>
+    <!-- Social -->
+    <div class="social-icons">
 
-</form>
+        <a href="https://facebook.com/YOUR_PAGE" target="_blank" class="social" data-name="Facebook">
+            <i class="fa-brands fa-facebook-f"></i>
+        </a>
+
+        <a href="https://youtube.com/YOUR_CHANNEL" target="_blank" class="social" data-name="YouTube">
+            <i class="fa-brands fa-youtube"></i>
+        </a>
+
+        <a href="https://t.me/YOUR_GROUP" target="_blank" class="social" data-name="Telegram">
+            <i class="fa-brands fa-telegram"></i>
+        </a>
+
+    </div>
+
+    <!-- Logout -->
+    <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <button class="logout-btn">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            تسجيل الخروج
+        </button>
+    </form>
+
+</div>
 
 </div>
 
