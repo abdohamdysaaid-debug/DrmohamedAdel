@@ -5,7 +5,13 @@
 /* الخلفية */
 
 body{
-background:linear-gradient(135deg,#eef2ff,#f0f9ff,#f8fafc);
+background:
+linear-gradient(rgba(15,23,42,0.85),rgba(15,23,42,0.85)),
+url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb');
+
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
 overflow-x:hidden;
 }
 
