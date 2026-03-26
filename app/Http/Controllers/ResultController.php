@@ -21,14 +21,15 @@ class ResultController extends Controller
 
     public function submitResultNotification($user_id)
     {
-        $user = User::find($user_id);
+        $students = User::where('role','student')->get();
 
-        // إشعار داخل المنصة
+      foreach($students as $student){
         Notification::create([
-            'user_id' => $user->id,
-            'title' => '📊 نتيجتك ظهرت',
-            'message' => 'تم إعلان نتيجتك في الكويز'
-        ]);
+        'user_id'=>$student->id,
+        'title'=>'📊 نتيجة جديدة',
+        'message'=>'تم إعلان نتيجة الكويز'
+         ]);
+        }
 
         // Push Notification
         if ($user->push_subscription) {
